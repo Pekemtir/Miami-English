@@ -1,5 +1,11 @@
 # Miami English · cambios
 
+## v1.1 · 2026-11-13
+- Curso B2: 22 lecciones (221 ejercicios): tiempos perfectos y de futuro avanzados, condicionales 3 y mixtos, deseos, deducción, pasiva y causativa, estilo indirecto, relativos, gerundio/infinitivo, inversión, conectores, phrasal verbs, colocaciones, idioms y registro, argumentar, comparar, reclamar y negociar, tags/so-such/artículos, adjetivos y adverbios, léxico de trabajo, ley, sociedad, tecnología, consumo y medios.
+- El test de nivel llega hasta B2 (20 preguntas nuevas), el plan incluye lecciones B2 si el nivel es B2 y el test final compara 4 niveles.
+- Temario y referencias: tabla de cobertura B2 contrastada con RD 1041/2017, MCER y programación EOI B2.1/B2.2 (incluida la secuenciación gramatical).
+- Pruebas: ~11.000 comprobaciones automáticas.
+
 ## v1.0 · 2026-11-12
 - App completa: onboarding (nombre, objetivo, miedos, tiempo, autoevaluación), test de nivel adaptativo (A1/A2/B1 + 4 habilidades) y plan generado por reglas.
 - 9 módulos de Miami (5 imprescindibles + 4 opcionales), 165 frases en 3 niveles, consejos culturales, 14 simulaciones ramificadas, refuerzo sugerido por punto débil, escucha rápida con acento americano, repaso espaciado, cultura práctica, tarjeta de 30 frases clave, test final.

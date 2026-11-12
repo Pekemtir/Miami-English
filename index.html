@@ -1003,6 +1003,297 @@ const B1=[
  ['b',"Siento mucho el retraso.","I'm very sorry for the delay."]]}
 ];
 const B1M={};B1.forEach(l=>B1M[l.id]=l);
+/* ===== CURSO B2: 18 lecciones (gramática, léxico y funciones del nivel avanzado). Preguntas: c=opción, t=escribir, b=ordenar ===== */
+const B2=[
+{id:'c01',n:'Present perfect continuous y contraste',es:'Acciones que llevan tiempo en marcha y su resultado',ic:'⏱️',min:12,mcer:'Aspecto durativo y perfectivo; duración hasta el presente',
+ goals:['Decir cuánto tiempo llevas haciendo algo','Distinguir «llevo haciendo» de «he hecho»','Explicar un resultado presente por una causa reciente'],
+ st:[{t:'Cómo se forma y cuándo se usa',h:'<p><b>have / has + been + -ing</b>. Pone el foco en la <b>actividad</b> y su duración, no en que esté terminada.</p><p>Se usa para: (1) algo que empezó en el pasado y sigue (I have been waiting for an hour), (2) algo reciente cuyo resultado se ve ahora (You look tired. — I have been working all night).</p><p>Contraste: <b>I have read three chapters</b> (cantidad, resultado) frente a <b>I have been reading all day</b> (actividad, duración).</p><p>Los verbos de estado (know, like, own, be) no suelen ir en continuo: I have known her for years.</p>',ex:[["I have been learning English for six months.","Llevo seis meses aprendiendo inglés."],["She has been crying. Her eyes are red.","Ha estado llorando. Tiene los ojos rojos."],["How long have you been driving?","¿Cuánto tiempo llevas conduciendo?"],["I have written five emails this morning.","He escrito cinco correos esta mañana."]]}],
+ q:[['c',"I ___ for the bus for twenty minutes.","have been waiting",["am waiting","have waited yesterday","waited since"],"Duración hasta ahora: have been + -ing."],
+ ['c',"You're covered in paint! — Yes, I ___ the kitchen.","have been painting",["paint","painted yesterday","am painted"],"Resultado visible de una actividad reciente."],
+ ['c',"She ___ three books this month.","has read",["has been read","reads","is reading since"],"Cantidad terminada: present perfect simple."],
+ ['c',"How long ___ in Miami?","have you been living",["do you live","did you lived","are you lived"],"How long + present perfect continuous."],
+ ['c',"I ___ this phone since March.","have had",["have been having","am having","had"],"«Have» de posesión es verbo de estado: no se usa en continuo."],
+ ['c',"We ___ for you everywhere! Where were you?","have been looking",["look","are looked","have look"],"Actividad que acaba de terminar."],
+ ['t',"They have been ___ (work) here since 2019.","working","Have been + -ing."],
+ ['t',"It has been ___ (rain) all morning.","raining","Has been + raining."],
+ ['c',"I'm exhausted. I ___ since six o'clock.","have been running",["run","am run","have ran"],"Explica el cansancio actual."],
+ ['b',"Llevo dos horas esperando.","I have been waiting for two hours."]]},
+{id:'c02',n:'Past perfect y narrar en pasado',es:'Lo que había pasado antes de otro momento del pasado',ic:'📚',min:12,mcer:'Anterioridad en el pasado; cohesión narrativa',
+ goals:['Ordenar dos hechos del pasado con had + participio','Usar before, after, by the time, as soon as','Contar una historia con varios tiempos'],
+ st:[{t:'Past perfect',h:'<p><b>had + participio</b> (igual para todas las personas). Se usa para el hecho que ocurrió <b>antes</b> de otro momento del pasado.</p><p>When I arrived, the film <b>had</b> already <b>started</b>. (primero empezó, luego llegué)</p><p>Palabras útiles: <b>already, just, never, by the time, after, before, as soon as</b>.</p><p><b>Past perfect continuous</b> (had been + -ing): actividad en marcha antes de otro momento. I was tired because I had been driving all day.</p>',ex:[["By the time we got to the airport, the plane had left.","Cuando llegamos al aeropuerto, el avión ya se había ido."],["She had never flown before that trip.","No había volado nunca antes de ese viaje."],["After he had paid, he left the restaurant.","Después de pagar, salió del restaurante."],["They had been waiting for hours when the bus finally came.","Llevaban horas esperando cuando por fin llegó el autobús."]]}],
+ q:[['c',"When we arrived, the show ___.","had already started",["already started yesterday","has already started","was already start"],"Primero empezó, luego llegamos."],
+ ['c',"I couldn't get in because I ___ my keys at home.","had left",["have left","leave","was leaving"],"Anterior a «couldn't get in»."],
+ ['c',"By the time she called, I ___ to bed.","had gone",["have gone","go","was gone to"],"By the time + past perfect."],
+ ['c',"He ___ sushi before he went to Japan.","had never eaten",["has never eaten","was never eating","never ate before"],"Never + had + participio."],
+ ['c',"She was tired because she ___ all day.","had been working",["has worked","worked","is working"],"Actividad previa que explica el estado."],
+ ['c',"After they ___ dinner, they went for a walk.","had finished",["finish","have finished","were finishing"],"After + past perfect, luego past simple."],
+ ['t',"The taxi had already ___ (leave) when I got outside.","left","Participio de leave: left."],
+ ['t',"We were lost because we had ___ (take) the wrong road.","taken","Participio de take: taken."],
+ ['c',"As soon as I ___ the news, I called you.","heard",["had been hearing","have heard","was hearing"],"Dos hechos seguidos: past simple basta."],
+ ['b',"Cuando llegué, ya se habían ido.","When I arrived, they had already left."]]},
+{id:'c03',n:'Futuro avanzado',es:'Future continuous, future perfect y planes en el tiempo',ic:'🔭',min:12,mcer:'Referencia al futuro; aspecto durativo y perfectivo futuro',
+ goals:['Decir qué estarás haciendo a una hora concreta','Decir qué habrás terminado para una fecha','Hablar de planes y horarios (be about to, be due to)'],
+ st:[{t:'Formas del futuro',h:'<p><b>Future continuous</b>: will be + -ing. Algo en marcha en un momento futuro. This time tomorrow I will be flying to Miami.</p><p><b>Future perfect</b>: will have + participio. Algo terminado antes de un momento futuro. By Friday I will have finished the course.</p><p><b>be about to</b> + infinitivo: inminente. The plane is about to take off.</p><p><b>be due to</b> + infinitivo: está previsto. The flight is due to land at 6.</p><p>Tras when, as soon as, before, until, after en futuro se usa presente: I will call you when I arrive.</p>',ex:[["This time next week I will be lying on the beach.","A esta hora la semana que viene estaré tumbado en la playa."],["By December she will have saved enough money.","Para diciembre habrá ahorrado suficiente dinero."],["Hurry up! The doors are about to close.","¡Date prisa! Las puertas están a punto de cerrarse."],["The train is due to arrive at nine.","Está previsto que el tren llegue a las nueve."]]}],
+ q:[['c',"This time tomorrow I ___ on a plane.","will be sitting",["sit","have sat","am sit"],"Acción en marcha en un momento futuro."],
+ ['c',"By next June, we ___ here for ten years.","will have lived",["will live","are living","will be lived"],"Future perfect con límite de tiempo."],
+ ['c',"Be quick! The movie ___ start.","is about to",["is due","will have","is going"],"Inminente: is about to + infinitivo."],
+ ['c',"The conference ___ begin at ten, but it's late.","is due to",["is about","will have","is being"],"Estaba previsto: is due to."],
+ ['c',"I'll text you as soon as I ___.","arrive",["will arrive","will have arrived","am arriving"],"Tras as soon as, presente."],
+ ['c',"Don't call at eight. I ___ dinner.","will be having",["have had","am have","had"],"Acción en marcha a esa hora."],
+ ['t',"By the time you read this, I will have ___ (land).","landed","Will have + participio."],
+ ['t',"Next Sunday she will be ___ (fly) home.","flying","Will be + -ing."],
+ ['c',"Will you have finished the report ___ Friday?","by",["until","in","at"],"By = como muy tarde."],
+ ['b',"Para entonces habré terminado.","By then I will have finished."]]},
+{id:'c04',n:'Condicionales 3 y mixtos',es:'Hipótesis sobre el pasado y su efecto en el presente',ic:'🔀',min:12,mcer:'Hipótesis irreales; expresión de condición',
+ goals:['Hablar de lo que habría pasado si…','Mezclar pasado y presente en una hipótesis','Usar unless, as long as y provided that'],
+ st:[{t:'Tercer condicional y mixtos',h:'<p><b>Tercer condicional</b>: If + past perfect, would have + participio. Irreal en el pasado: no se puede cambiar.</p><p>If I had known, I would have called you.</p><p><b>Mixto</b>: causa en el pasado, efecto ahora: If + past perfect, would + infinitivo. If I had taken that job, I would be rich now.</p><p><b>Mixto inverso</b>: situación permanente, efecto en el pasado: If I were braver, I would have said something.</p><p>Otras condiciones: <b>unless</b> (= if not), <b>as long as / provided that</b> (siempre que).</p>',ex:[["If we had left earlier, we would have caught the train.","Si hubiéramos salido antes, habríamos cogido el tren."],["If she had studied, she would be a doctor now.","Si hubiera estudiado, ahora sería médica."],["You can park here as long as you pay.","Puedes aparcar aquí siempre que pagues."],["I won't go unless you come with me.","No iré a menos que vengas conmigo."]]}],
+ q:[['c',"If I ___ the map, we wouldn't have got lost.","had brought",["brought","would bring","have brought"],"Tercer condicional: if + past perfect."],
+ ['c',"If she had studied more, she ___ the exam.","would have passed",["would pass","had passed","will have passed"],"Would have + participio."],
+ ['c',"If I had taken that job, I ___ rich now.","would be",["would have been","had been","will be"],"Mixto: ahora, would + infinitivo."],
+ ['c',"I wouldn't be so tired if I ___ better last night.","had slept",["slept","would sleep","have slept"],"Pasado irreal: past perfect."],
+ ['c',"What ___ if you had missed the flight?","would you have done",["will you do","did you do","would you done"],"Pregunta del tercer condicional."],
+ ['c',"If it hadn't rained, we ___ to the beach.","would have gone",["had gone","went","would gone"],"Resultado irreal en el pasado."],
+ ['c',"You can borrow my car ___ you drive carefully.","as long as",["unless","in case of","even"],"Siempre que = as long as."],
+ ['c',"I'll cancel the trip ___ the weather improves.","unless",["as long as","provided","in case that"],"Unless = a menos que."],
+ ['t',"If we ___ (leave) earlier, we would have caught the train.","had left","Past perfect."],
+ ['b',"Si hubiera sabido, te habría llamado.","If I had known, I would have called you."]]},
+{id:'c05',n:'Deseos y arrepentimientos',es:'Wish, if only, would rather, had better, it\'s time',ic:'💫',min:12,mcer:'Expresión de deseos y lamentos; valores subjuntivos del inglés',
+ goals:['Expresar deseos sobre el presente y el pasado','Quejarte de un hábito ajeno con wish + would','Dar consejos urgentes con had better y would rather'],
+ st:[{t:'Wish y compañía',h:'<table class="mini"><tr><th>wish + past simple</th><td>deseo sobre el presente: I wish I had more time.</td></tr><tr><th>wish + past perfect</th><td>lamento del pasado: I wish I had called you.</td></tr><tr><th>wish + would</th><td>queja de algo que molesta: I wish he would stop talking.</td></tr><tr><th>If only</th><td>igual que wish, más enfático: If only it were Friday!</td></tr></table><p>Con wish se puede usar <b>were</b> para todas las personas: I wish I were taller.</p><p><b>It is time</b> + sujeto + pasado: It is time we went home. <b>would rather</b> + sujeto + pasado: I would rather you did not smoke here. <b>had better</b> + infinitivo: You had better take a jacket.</p>',ex:[["I wish I lived closer to the beach.","Ojalá viviera más cerca de la playa."],["If only I had listened to you!","¡Ojalá te hubiera hecho caso!"],["It's time we left.","Ya es hora de que nos vayamos."],["You'd better hurry or you'll miss the flight.","Más te vale darte prisa o perderás el vuelo."]]}],
+ q:[['c',"I wish I ___ more money. (ahora)","had",["have","would have","had had"],"Deseo sobre el presente: past simple."],
+ ['c',"I wish I ___ you yesterday.","had called",["called","would call","have called"],"Lamento del pasado: past perfect."],
+ ['c',"I wish he ___ so loudly. It's annoying.","wouldn't talk",["doesn't talk","didn't talked","hadn't talk"],"Queja: wish + would."],
+ ['c',"It's time we ___ home.","went",["going","will go","are going"],"It's time + pasado."],
+ ['c',"I'd rather you ___ in here.","didn't smoke",["don't smoke","won't smoke","not smoke"],"Would rather + sujeto + pasado."],
+ ['c',"You'd better ___ a jacket. It's cold.","take",["to take","taking","took"],"Had better + infinitivo sin to."],
+ ['c',"I'd rather ___ at home tonight.","stay",["to stay","staying","stayed"],"Mismo sujeto: would rather + infinitivo."],
+ ['c',"If only it ___ raining! I want to go out.","would stop",["stops","stopped yesterday","has stopped"],"If only + would para algo que molesta."],
+ ['t',"I wish I ___ (be) taller.","were|was","Con wish, were/was."],
+ ['b',"Ojalá tuviera más tiempo.","I wish I had more time."]]},
+{id:'c06',n:'Deducción y especulación',es:'Must, can\'t, might + have + participio',ic:'🕵️',min:12,mcer:'Modalidad epistémica: certeza, probabilidad y posibilidad',
+ goals:['Deducir con must / can\'t sobre el presente y el pasado','Expresar posibilidad con might, may y could','Elegir el grado de certeza correcto'],
+ st:[{t:'Grados de certeza',h:'<table class="mini"><tr><th>seguro que sí</th><td>must be / must have been</td></tr><tr><th>posible</th><td>might / may / could be · might have been</td></tr><tr><th>seguro que no</th><td>can\'t be / couldn\'t be · can\'t have been</td></tr></table><p>Pasado: <b>modal + have + participio</b>. They must have left. She can\'t have known. He might have forgotten.</p><p>En presente continuo: He must be working. En inglés no se usa <b>mustn\'t</b> para deducir negativo: se usa <b>can\'t</b>.</p>',ex:[["He's not answering. He must be asleep.","No contesta. Debe de estar dormido."],["That can't be Tom. He's in Spain.","No puede ser Tom. Está en España."],["They might have missed the flight.","Puede que hayan perdido el vuelo."],["She must have been very tired.","Debía de estar muy cansada."]]}],
+ q:[['c',"She isn't answering. She ___ be asleep.","might",["mustn't","ought","shall"],"Posibilidad: might."],
+ ['c',"That ___ be Tom. He's in Spain this week.","can't",["mustn't","might","should"],"Seguro que no: can't."],
+ ['c',"The lights are off. They ___ left already.","must have",["can have","should",  "may to have"],"Seguro que sí en el pasado: must have + participio."],
+ ['c',"I can't find my wallet. I ___ left it in the taxi.","might have",["might to have","might had","must had"],"Posible: might have + participio."],
+ ['c',"He has been working all day. He ___ be tired.","must",["can't","couldn't","shouldn't"],"Deducción positiva."],
+ ['c',"She ___ have heard us. She was at the other end of the building.","can't",["must","shall","ought"],"Seguro que no, pasado: can't have."],
+ ['c',"It ___ be true! I don't believe it.","can't",["must","will","shall"],"Incredulidad: can't."],
+ ['t',"He must have ___ (miss) the bus.","missed","Must have + participio."],
+ ['t',"They can't have ___ (arrive) yet. Their flight is at six.","arrived","Can't have + participio."],
+ ['b',"Deben de haber perdido el vuelo.","They must have missed the flight."]]},
+{id:'c07',n:'Pasiva avanzada y have something done',es:'Pasiva con verbos de opinión, causativa y pasiva continua',ic:'🔧',min:12,mcer:'Voz pasiva en todos los tiempos; construcciones causativas',
+ goals:['Usar la pasiva en distintos tiempos','Decir «se dice que…» con is said to','Hablar de servicios con have something done'],
+ st:[{t:'Pasiva y causativa',h:'<p><b>Pasiva</b>: be + participio, en cualquier tiempo. The room is cleaned daily · was cleaned · has been cleaned · is being cleaned · will be cleaned.</p><p><b>Verbos de opinión</b> (say, believe, think, know, report): <b>It is said that…</b> o <b>He is said to be…</b> / <b>He is said to have left</b>.</p><p><b>Causativa</b>: <b>have + objeto + participio</b> = el servicio lo hace otro. I had my car repaired. She is having her hair cut.</p><p>Verbos con dos objetos: We were given a free upgrade.</p>',ex:[["The hotel was renovated last year.","El hotel fue reformado el año pasado."],["Miami is said to be one of the busiest cities.","Se dice que Miami es una de las ciudades más concurridas."],["I'm having my passport renewed.","Me están renovando el pasaporte."],["We were given a free upgrade.","Nos dieron una mejora gratis."]]}],
+ q:[['c',"The hotel ___ last year.","was renovated",["renovated","has renovate","is renovating"],"Pasiva en pasado."],
+ ['c',"Miami ___ to be one of the busiest cities.","is said",["says","is saying","has said"],"Is said to + infinitivo."],
+ ['c',"I had my car ___ yesterday.","repaired",["repair","repairing","to repair"],"Have + objeto + participio."],
+ ['c',"She ___ her hair cut every month.","has",["is","does","gets to"],"Causativa: has her hair cut."],
+ ['c',"The bag ___ by the police at the moment.","is being searched",["is searched yesterday","searches","has searching"],"Pasiva continua."],
+ ['c',"We ___ a free upgrade at check-in.","were given",["gave","have give","were giving"],"Pasiva con objeto indirecto."],
+ ['c',"He is believed ___ the country last night.","to have left",["to leave yesterday","leaving","to has left"],"Pasado: to have + participio."],
+ ['t',"The room has not been ___ (clean) yet.","cleaned","Participio de clean."],
+ ['t',"I'm having my passport ___ (renew).","renewed","Have + objeto + participio."],
+ ['b',"Me robaron la cartera.","My wallet was stolen."]]},
+{id:'c08',n:'Estilo indirecto avanzado',es:'Verbos de transmisión: suggest, admit, deny, accuse, promise',ic:'🗨️',min:12,mcer:'Discurso referido; verbos de habla y patrones verbales',
+ goals:['Retroceder los tiempos al contar lo que dijeron','Reportar órdenes y preguntas','Elegir el verbo de transmisión y su patrón'],
+ st:[{t:'Retroceso de tiempos y verbos de transmisión',h:'<p>Al contar lo dicho el tiempo retrocede: will → would, am/is/are → was/were, present → past, past → past perfect. Cambian también this → that, here → there, tomorrow → the next day.</p><p><b>Preguntas</b>: sin inversión. He asked where I lived. Sí/no: if / whether.</p><p><b>Órdenes</b>: told + persona + to + infinitivo. She told me not to touch it.</p><p><b>Verbos y patrón</b>:</p><table class="mini"><tr><th>+ -ing</th><td>suggest, admit, deny, apologise for</td></tr><tr><th>+ to + inf</th><td>promise, offer, refuse, agree</td></tr><tr><th>+ persona + of / for</th><td>accuse someone of, blame someone for</td></tr></table>',ex:[["She said she would call me the next day.","Dijo que me llamaría al día siguiente."],["He asked me where I lived.","Me preguntó dónde vivía."],["He admitted breaking the window.","Admitió haber roto la ventana."],["They accused him of lying.","Lo acusaron de mentir."]]}],
+ q:[['c',"\"I'll call you tomorrow.\" She said she ___ me the next day.","would call",["will call","calls","called tomorrow"],"Will pasa a would."],
+ ['c',"\"Where do you live?\" He asked me where I ___.","lived",["do live","live","did live"],"Sin inversión y un tiempo atrás."],
+ ['c',"\"Don't touch it!\" He told me ___ it.","not to touch",["don't touch","to not touching","not touching"],"Told + persona + not to."],
+ ['c',"She suggested ___ to the beach.","going",["to go","go","to going"],"Suggest + -ing."],
+ ['c',"He admitted ___ the window.","breaking",["to break","break","to breaking"],"Admit + -ing."],
+ ['c',"She denied ___ the money.","taking",["to take","take","to have take"],"Deny + -ing."],
+ ['c',"They accused him ___ lying.","of",["for","about","to"],"Accuse someone of."],
+ ['c',"He promised ___ me as soon as he arrived.","to text",["texting","text","for texting"],"Promise + to + infinitivo."],
+ ['t',"He asked if I ___ (be) hungry.","was|were","Pregunta indirecta un tiempo atrás."],
+ ['b',"Me preguntó dónde vivía.","She asked me where I lived."]]},
+{id:'c09',n:'Oraciones de relativo y participios',es:'Whose, whom, which con preposición, y oraciones reducidas',ic:'🧵',min:12,mcer:'Subordinación de relativo; cohesión y concisión',
+ goals:['Usar whose, whom y preposición + which','Distinguir relativas especificativas y explicativas','Reducir una relativa con -ing o participio'],
+ st:[{t:'Relativos y oraciones reducidas',h:'<p><b>Especificativa</b> (sin comas, identifica): The man who called is here. Se puede usar that.</p><p><b>Explicativa</b> (entre comas, añade información): Miami, which is in Florida, is warm. Aquí <b>no</b> se usa that.</p><p><b>whose</b> + nombre: The man whose car was stolen called the police.</p><p><b>Preposición + whom / which</b> (formal): the street along which we walked; two sons, both of whom are doctors.</p><p><b>Reducida</b>: -ing (activa) o participio (pasiva). The woman talking to me is my boss. The documents sent yesterday are on your desk.</p>',ex:[["That's the hotel where we stayed.","Ese es el hotel donde nos alojamos."],["The man whose car was stolen called the police.","El hombre cuyo coche fue robado llamó a la policía."],["Miami, which is famous for its beaches, is very hot.","Miami, que es famosa por sus playas, es muy calurosa."],["The woman talking to me is my boss.","La mujer que habla conmigo es mi jefa."]]}],
+ q:[['c',"That's the hotel ___ we stayed.","where",["who","whose","what"],"Lugar: where."],
+ ['c',"The man ___ car was stolen called the police.","whose",["who","which","whom"],"Posesión: whose."],
+ ['c',"Miami, ___ is famous for its beaches, is very hot.","which",["that","who","where it"],"Explicativa: which, no that."],
+ ['c',"She has two sons, ___ are doctors.","both of whom",["both of who","that both","which both"],"Cantidad + of whom."],
+ ['c',"This is the street along ___ we walked.","which",["what","where","whose"],"Preposición + which."],
+ ['c',"The woman ___ to me is my boss.","talking",["talked","who talk","is talking"],"Reducida con -ing."],
+ ['c',"The documents ___ yesterday are on your desk.","sent",["sending","sends","are sent"],"Reducida con participio pasivo."],
+ ['c',"Everything ___ you said was true.","that",["what","who","whose"],"Tras everything: that."],
+ ['t',"The film ___ we watched was long. (that/which)","that|which","Relativo de cosa."],
+ ['b',"El hombre cuyo coche fue robado llamó a la policía.","The man whose car was stolen called the police."]]},
+{id:'c10',n:'Gerundio e infinitivo: cambios de significado',es:'Remember, stop, regret, used to, be used to y verbos con preposición',ic:'🔁',min:12,mcer:'Patrones verbales; complementación de verbos',
+ goals:['Distinguir remember doing / to do y stop doing / to do','No confundir used to y be used to','Usar -ing tras preposición y tras verbos como avoid, enjoy, look forward to'],
+ st:[{t:'Cuando cambia el significado',h:'<table class="mini"><tr><th>remember / forget + -ing</th><td>recuerdo algo que ya hice: I remember locking the door.</td></tr><tr><th>remember / forget + to</th><td>me acuerdo de hacer algo pendiente: Remember to lock it.</td></tr><tr><th>stop + -ing</th><td>dejar de hacer: He stopped smoking.</td></tr><tr><th>stop + to</th><td>parar para hacer: She stopped to buy coffee.</td></tr><tr><th>regret + -ing / to</th><td>lamentar lo hecho / lamentar tener que decir (formal)</td></tr></table><p><b>used to + infinitivo</b>: hábito pasado (I used to live in Madrid). <b>be / get used to + -ing</b>: estar acostumbrado (I am used to getting up early).</p><p>Tras preposición siempre -ing: look forward to seeing, good at cooking, instead of driving. También: avoid, enjoy, mind, can\'t help, it\'s no use + -ing. Let / make + objeto + infinitivo sin to.</p>',ex:[["I remember locking the door.","Recuerdo haber cerrado la puerta."],["Remember to lock the door.","Acuérdate de cerrar la puerta."],["She's used to driving on the right.","Está acostumbrada a conducir por la derecha."],["I'm looking forward to seeing you.","Estoy deseando verte."]]}],
+ q:[['c',"I remember ___ the door. I'm sure it was locked.","locking",["to lock","lock","locked"],"Recuerdo algo ya hecho: -ing."],
+ ['c',"Remember ___ the door before you leave.","to lock",["locking","lock","locked"],"Acción pendiente: to + infinitivo."],
+ ['c',"She stopped ___ a coffee on the way.","to buy",["buying","buy","bought"],"Paró para comprar: stop + to."],
+ ['c',"He stopped ___ last year. His health is better.","smoking",["to smoke","smoke","smoked"],"Dejó el hábito: stop + -ing."],
+ ['c',"I'm used to ___ early. It's no problem.","getting up",["get up","got up","to get up"],"Be used to + -ing."],
+ ['c',"I ___ in Madrid when I was a child.","used to live",["am used to live","use to living","was used to live"],"Used to + infinitivo: hábito pasado."],
+ ['c',"She's looking forward to ___ you.","seeing",["see","to see","saw"],"Preposición to + -ing."],
+ ['c',"He avoided ___ the question.","answering",["to answer","answer","answered"],"Avoid + -ing."],
+ ['t',"I can't help ___ (laugh) when I see that video.","laughing","Can't help + -ing."],
+ ['b',"Estoy deseando verte.","I am looking forward to seeing you."]]},
+{id:'c11',n:'Inversión y énfasis',es:'Never have I…, not only… but also…, cleft sentences',ic:'📣',min:12,mcer:'Énfasis; orden de palabras marcado; registro formal',
+ goals:['Invertir sujeto y auxiliar tras adverbios negativos','Usar hardly… when y no sooner… than','Enfatizar con what… is y it was… that'],
+ st:[{t:'Orden de palabras enfático',h:'<p>Tras un adverbio negativo al principio se invierte auxiliar + sujeto: <b>Never have I seen</b> such a beach. <b>Rarely do we get</b> such good service. <b>Not only was he late</b>, but he also forgot the tickets. <b>Only after the storm did</b> the airport reopen.</p><p><b>Hardly / Scarcely… when</b> y <b>No sooner… than</b> (con past perfect invertido): Hardly had we arrived when it started to rain. No sooner had she sat down than the phone rang.</p><p>Condicional formal: <b>Had I known</b>, I would have come.</p><p><b>Cleft</b>: What I need is a holiday. It was Anna who broke the glass.</p>',ex:[["Never have I seen such a beautiful beach.","Nunca he visto una playa tan bonita."],["No sooner had she sat down than the phone rang.","Apenas se había sentado cuando sonó el teléfono."],["Had I known, I would have come.","De haberlo sabido, habría venido."],["What I need is a long holiday.","Lo que necesito son unas vacaciones largas."]]}],
+ q:[['c',"Never ___ such a beautiful beach.","have I seen",["I have seen","I saw","did I seen"],"Never + auxiliar + sujeto."],
+ ['c',"Not only ___ late, but he also forgot the tickets.","was he",["he was","did he","he is"],"Not only + inversión."],
+ ['c',"Hardly had we arrived ___ it started to rain.","when",["than","that","as"],"Hardly… when."],
+ ['c',"No sooner had she sat down ___ the phone rang.","than",["when","that","as"],"No sooner… than."],
+ ['c',"Rarely ___ such good service.","do we get",["we get","we do get","get we"],"Rarely + do + sujeto."],
+ ['c',"Only after the storm ___ the airport reopen.","did",["has","was","had been"],"Only after + inversión."],
+ ['c',"___ I need is a long holiday.","What",["That","Who","Which"],"Cleft con what."],
+ ['c',"It was Anna ___ broke the glass.","who",["what","whose","which"],"It was… who."],
+ ['t',"___ I known, I would have come. (Condicional formal)","Had","Had I known = if I had known."],
+ ['b',"Nunca había visto algo así.","Never had I seen anything like it."]]},
+{id:'c12',n:'Conectores y cohesión',es:'Contraste, causa, finalidad y consecuencia',ic:'🔗',min:12,mcer:'Cohesión y coherencia; conectores de discurso',
+ goals:['Contrastar con although, despite, whereas y however','Expresar causa y finalidad con owing to, so that, in order to','Organizar un texto con conectores formales'],
+ st:[{t:'Conectores clave',h:'<table class="mini"><tr><th>contraste</th><td>although / even though + oración · despite / in spite of + nombre o -ing · whereas / while · however / nevertheless (empiezan frase nueva)</td></tr><tr><th>causa</th><td>because + oración · because of / owing to / due to + nombre · since / as</td></tr><tr><th>finalidad</th><td>to / in order to / so as to + infinitivo · so that + oración</td></tr><tr><th>consecuencia</th><td>so · therefore · as a result · consequently</td></tr></table><p>Despite the rain, we went out. = Although it was raining, we went out. He studied hard; however, he failed.</p>',ex:[["Despite the delay, we arrived on time.","A pesar del retraso, llegamos a tiempo."],["She was tired. Nevertheless, she kept working.","Estaba cansada. Aun así, siguió trabajando."],["I took a map so that I wouldn't get lost.","Cogí un mapa para no perderme."],["Owing to the strike, all flights were cancelled.","Debido a la huelga, cancelaron todos los vuelos."]]}],
+ q:[['c',"___ the rain, we went out.","Despite",["Although","However","Because"],"Despite + nombre."],
+ ['c',"___ it was raining, we went out.","Although",["Despite","In spite","Nevertheless"],"Although + oración."],
+ ['c',"He is rich, ___ his brother is poor.","whereas",["despite","owing to","so that"],"Contraste entre dos hechos."],
+ ['c',"She was tired. ___, she kept working.","Nevertheless",["Because","Although","In order"],"Conector que abre la frase nueva."],
+ ['c',"We left early ___ avoid the traffic.","in order to",["so that","owing to","despite"],"Finalidad + infinitivo."],
+ ['c',"___ the strike, all flights were cancelled.","Owing to",["Even though","Whereas","So as"],"Causa + nombre."],
+ ['c',"I took a map ___ I wouldn't get lost.","so that",["in order to","despite","owing to"],"So that + oración."],
+ ['c',"He studied hard; ___, he failed the exam.","however",["because","although","so that"],"Contraste tras punto y coma."],
+ ['t',"In ___ of the heat, we walked to the beach. (spite)","spite","In spite of."],
+ ['b',"A pesar del retraso, llegamos a tiempo.","Despite the delay, we arrived on time."]]},
+{id:'c13',n:'Phrasal verbs útiles',es:'Verbos con partícula para viajar y vivir en inglés',ic:'🧩',min:12,mcer:'Léxico: verbos con partícula de uso frecuente; registro informal',
+ goals:['Entender y usar 20 phrasal verbs frecuentes','Saber cuáles se separan (pick me up) y cuáles no','Usar los de viaje: check in, take off, run out of'],
+ st:[{t:'Qué son y cómo se colocan',h:'<p>Un phrasal verb es verbo + partícula y cambia de significado. <b>Separables</b>: el pronombre va en medio (pick <b>me</b> up, turn <b>it</b> off). <b>Inseparables</b>: look after, run out of, get on with.</p><table class="mini"><tr><th>viaje</th><td>check in / check out · take off · land · pick up · drop off · set off · get on / get off</td></tr><tr><th>día a día</th><td>fill out (a form) · find out · give up · look for · turn down · put off · call off · work out · come up with</td></tr></table><p>run out of = quedarse sin · put off = aplazar · call off = cancelar · turn down = rechazar o bajar el volumen.</p>',ex:[["We have to check out of the hotel by noon.","Tenemos que dejar el hotel antes del mediodía."],["Can you pick me up at the airport?","¿Puedes recogerme en el aeropuerto?"],["They called off the meeting.","Cancelaron la reunión."],["We ran out of gas on the highway.","Nos quedamos sin gasolina en la autopista."]]}],
+ q:[['c',"Please ___ this form before boarding.","fill out",["fill off","fill on","fill by"],"Fill out = rellenar."],
+ ['c',"The plane ___ at six.","takes off",["takes up","takes of","takes in"],"Take off = despegar."],
+ ['c',"We ___ of gas on the highway.","ran out",["ran off","ran away","ran up"],"Run out of = quedarse sin."],
+ ['c',"Can you ___ me up at the airport?","pick",["take","put","set"],"Pick up = recoger."],
+ ['c',"The meeting was ___ off because of the storm.","called",["got","held","took"],"Call off = cancelar."],
+ ['c',"We have to check ___ of the hotel by noon.","out",["off","away","down"],"Check out = dejar el hotel."],
+ ['c',"Don't give ___! You can do it.","up",["off","away","back"],"Give up = rendirse."],
+ ['c',"¿Qué significa «put off»?","aplazar",["encender","ponerse","quitarse"],"Put off = posponer."],
+ ['t',"I'll ___ you off at the station. (drop)","drop","Drop off = dejar a alguien."],
+ ['b',"Nos hemos quedado sin gasolina.","We have run out of gas."]]},
+{id:'c14',n:'Colocaciones y formación de palabras',es:'Make / do, collocations frecuentes, prefijos y sufijos',ic:'🧱',min:12,mcer:'Léxico: colocaciones; derivación y composición de palabras',
+ goals:['Elegir make o do y los verbos habituales con cada nombre','Usar colocaciones naturales (heavy traffic, pay attention)','Formar palabras con prefijos y sufijos'],
+ st:[{t:'Colocaciones y derivación',h:'<table class="mini"><tr><th>make</th><td>a decision · an effort · a mistake · progress · a reservation · money</td></tr><tr><th>do</th><td>a favour · homework · the shopping · business · your best</td></tr><tr><th>otras</th><td>heavy traffic · strong coffee · pay attention · catch a cold · take a photo · run a risk</td></tr></table><p><b>Prefijos</b> negativos: un- (unhappy), im- (impossible), in- (incorrect), dis- (disagree), mis- (misunderstand).</p><p><b>Sufijos</b>: -ful (helpful), -less (careless), -able (comfortable), -ness (kindness), -ment (agreement), -ion (decision), -ly (adverbios).</p>',ex:[["I need to make a decision before Friday.","Tengo que tomar una decisión antes del viernes."],["Could you do me a favour?","¿Me haces un favor?"],["The staff were very helpful.","El personal fue muy atento."],["It's impossible to park here.","Es imposible aparcar aquí."]]}],
+ q:[['c',"I need to ___ a decision before Friday.","make",["do","take on","have to"],"Make a decision."],
+ ['c',"Could you ___ me a favour?","do",["make","give to","have"],"Do someone a favour."],
+ ['c',"We had ___ traffic on the highway.","heavy",["strong","big","thick"],"Heavy traffic."],
+ ['c',"Please ___ attention to the instructions.","pay",["give on","do","put"],"Pay attention."],
+ ['c',"I ___ a cold on the flight.","caught",["took","made","did"],"Catch a cold."],
+ ['c',"The staff were very ___. (help)","helpful",["helpless","helping","helped"],"-ful: lleno de."],
+ ['c',"The opposite of «possible» is ___.","impossible",["unpossible","dispossible","mispossible"],"Antes de p se usa im-."],
+ ['c',"Si no entiendes bien a alguien, lo has ___.","misunderstood",["disunderstood","unstood","overstood"],"Mis- = mal."],
+ ['t',"It was an ___ trip. (forget)","unforgettable","Un- + forget + -able."],
+ ['b',"Tienes que hacer un esfuerzo.","You have to make an effort."]]},
+{id:'c15',n:'Idioms y registro',es:'Expresiones hechas frecuentes y cuándo usar formal o informal',ic:'🎭',min:12,mcer:'Expresiones idiomáticas; adecuación del registro',
+ goals:['Entender 10 idioms muy frecuentes en EE. UU.','Distinguir registro formal e informal','Elegir la fórmula adecuada según la situación'],
+ st:[{t:'Idioms y registro',h:'<table class="mini"><tr><th>a piece of cake</th><td>algo muy fácil</td></tr><tr><th>under the weather</th><td>algo indispuesto</td></tr><tr><th>once in a blue moon</th><td>casi nunca</td></tr><tr><th>it costs an arm and a leg</th><td>cuesta un ojo de la cara</td></tr><tr><th>break a leg</th><td>¡mucha suerte!</td></tr><tr><th>hit the road</th><td>ponerse en camino</td></tr><tr><th>it\'s raining cats and dogs</th><td>llueve a cántaros</td></tr></table><p><b>Registro</b>: formal para escrito, trabajo y desconocidos (I would like to enquire…, purchase, assist, regret to inform); informal con amigos (What\'s up? gonna, wanna, buy, help). En EE. UU. el trato es cercano, pero en una queja formal conviene el registro formal.</p>',ex:[["The exam was a piece of cake.","El examen fue pan comido."],["I'm feeling a bit under the weather.","Me encuentro un poco pachucho."],["We see them once in a blue moon.","Los vemos de uvas a peras."],["Could you possibly help me with my luggage?","¿Podría ayudarme con el equipaje?"]]}],
+ q:[['c',"¿Qué significa «a piece of cake»?","algo muy fácil",["un postre caro","una mala idea","un regalo"],"Pan comido."],
+ ['c',"¿Qué significa «under the weather»?","algo indispuesto",["bajo la lluvia","con prisa","de viaje"],"Encontrarse mal."],
+ ['c',"¿Qué significa «once in a blue moon»?","casi nunca",["cada noche","una vez al mes","de repente"],"De uvas a peras."],
+ ['c',"«It costs an arm and a leg» quiere decir que ___.","es carísimo",["es peligroso","es gratis","es muy barato"],"Cuesta un ojo de la cara."],
+ ['c',"Antes de una actuación se dice «Break a leg!», que significa ___.","¡mucha suerte!",["¡cuidado!","¡adiós!","¡date prisa!"],"Deseo de suerte."],
+ ['c',"It's ___ cats and dogs. Take an umbrella.","raining",["falling","pouring on","snowing"],"Llueve a cántaros."],
+ ['c',"En un correo formal al hotel dirías:","I would like to enquire about my reservation.",["Hey, what's up with my room?","Gimme my booking.","Tell me about my room."],"Registro formal."],
+ ['c',"Con un amigo, lo más natural es:","What's up?",["How do you do?","I regret to inform you.","Good afternoon, madam."],"Registro informal."],
+ ['t',"The test was a piece of ___. (cake)","cake","A piece of cake."],
+ ['b',"Cuesta un ojo de la cara.","It costs an arm and a leg."]]},
+{id:'c16',n:'Argumentar y debatir',es:'Opinión matizada, concesión, contraste y cautela al afirmar',ic:'⚖️',min:12,mcer:'Funciones: argumentar, concesión, matizar; cortesía en el desacuerdo',
+ goals:['Presentar los dos lados de un asunto','Estar en desacuerdo con educación','Matizar lo que afirmas con seems, tend to, may well'],
+ st:[{t:'Fórmulas para argumentar',h:'<table class="mini"><tr><th>opinar</th><td>In my view… · As far as I\'m concerned… · I\'d say that… · To be honest…</td></tr><tr><th>contrastar</th><td>On the one hand… on the other hand… · Having said that…</td></tr><tr><th>conceder</th><td>That\'s a fair point, but… · I see what you mean, however… · You may be right, but…</td></tr><tr><th>matizar</th><td>It seems / appears that… · tend to · may well · more or less · up to a point</td></tr></table><p>Desacuerdo educado: nunca un «No!» seco. Reconoce algo y luego añade tu idea: I see what you mean, but I would argue that…</p>',ex:[["On the one hand it is cheap, but on the other it is far.","Por un lado es barato, pero por otro está lejos."],["That's a fair point, but I disagree.","Es un buen argumento, pero no estoy de acuerdo."],["As far as I'm concerned, the plan is fine.","Por lo que a mí respecta, el plan está bien."],["Prices tend to be higher in summer.","Los precios suelen ser más altos en verano."]]}],
+ q:[['c',"___ the one hand, it's cheap; on the other, it's far.","On",["In","At","By"],"On the one hand."],
+ ['c',"That's a fair point, ___ I disagree.","but",["so","because","unless"],"Concesión y desacuerdo."],
+ ['c',"___ as I'm concerned, the plan is fine.","As far",["So long","As well","By way"],"As far as I'm concerned."],
+ ['c',"It ___ that prices are going up.","seems",["looks to","thinks","sounds to"],"It seems that…"],
+ ['c',"To be ___, I didn't like the food.","honest",["true","real","sincerely"],"To be honest."],
+ ['c',"I'd ___ it's a good idea, but a bit expensive.","say",["tell","speak","talk"],"I'd say that…"],
+ ['c',"Prices ___ to be higher in summer.","tend",["use","tent","attend"],"Tend to = tener tendencia."],
+ ['c',"Para discrepar con educación dices:","I see what you mean, but I would argue that…",["No, you are wrong.","That is stupid.","I don't care."],"Reconoce y matiza."],
+ ['t',"On the one hand… on the ___ hand… (other)","other","On the other hand."],
+ ['b',"Por un lado es barato, pero por otro está lejos.","On the one hand it is cheap, but on the other hand it is far."]]},
+{id:'c17',n:'Comparar y cuantificar con precisión',es:'The more… the more, as… as, too / enough, few / a few',ic:'📊',min:12,mcer:'Comparación y gradación; cuantificadores',
+ goals:['Usar comparativos paralelos (the more…, the better)','Graduar con much, far, slightly, twice as…','Distinguir few / a few, too / enough, as / like'],
+ st:[{t:'Comparar y cuantificar',h:'<p><b>The + comparativo, the + comparativo</b>: The more you practice, the better you speak. <b>Cada vez más</b>: It is getting hotter and hotter.</p><p><b>Graduar</b>: much / far / a lot colder (mucho más) · slightly / a bit colder · twice as expensive as · by far the best.</p><p><b>too</b> + adjetivo (excesivo): too tired to walk. <b>adjetivo + enough</b>: big enough.</p><p><b>few</b> (casi ninguno, negativo) / <b>a few</b> (algunos, positivo) · <b>little</b> / <b>a little</b> con incontables.</p><p><b>as</b> (función, rol): He works as a guide. <b>like</b> (parecido): He looks like a guide.</p>',ex:[["The more you practice, the better you speak.","Cuanto más practicas, mejor hablas."],["It's much colder than yesterday.","Hace mucho más frío que ayer."],["The room isn't big enough for four people.","La habitación no es lo bastante grande para cuatro."],["He works as a guide in summer.","Trabaja de guía en verano."]]}],
+ q:[['c',"The more you practice, ___ you improve.","the faster",["faster","the fast","more fast"],"The + comparativo, the + comparativo."],
+ ['c',"It's ___ colder than yesterday.","much",["very","more","most"],"Much + comparativo."],
+ ['c',"This hotel is not as ___ as that one.","expensive",["more expensive","expensively","expense"],"Not as + adjetivo + as."],
+ ['c',"She is by far ___ student in the class.","the best",["better","the better","best"],"By far + superlativo."],
+ ['c',"It's getting hotter and ___ every day.","hotter",["hot","more hot","the hottest"],"Cada vez más: hotter and hotter."],
+ ['c',"He works ___ a guide in summer.","as",["like","such","how"],"Función o trabajo: as."],
+ ['c',"I'm ___ tired to walk any further.","too",["so","enough","very much"],"Too + adjetivo + to + infinitivo."],
+ ['c',"The room isn't big ___ for four people.","enough",["too","much","so"],"Adjetivo + enough."],
+ ['c',"I have ___ friends here, so I feel lonely.","few",["a few","a little","a lot"],"Few = casi ninguno."],
+ ['t',"The ___ I wait, the angrier I get. (long)","longer","Comparativo de long."],
+ ['b',"Cuanto más practicas, mejor hablas.","The more you practice, the better you speak."]]},
+{id:'c18',n:'Reclamar y negociar',es:'Quejas formales, peticiones corteses, concesiones y acuerdos',ic:'🤝',min:12,mcer:'Funciones: reclamar, solicitar, negociar; cortesía y formalidad',
+ goals:['Presentar una queja con firmeza y educación','Pedir un reembolso, un cambio o una excepción','Negociar un precio o una solución'],
+ st:[{t:'Fórmulas para reclamar y negociar',h:'<table class="mini"><tr><th>avisar de un problema</th><td>I am afraid there is a problem with… · Unfortunately, …</td></tr><tr><th>pedir</th><td>Would it be possible to…? · I would like to request… · I would appreciate it if you could…</td></tr><tr><th>quejarse</th><td>I am not satisfied with… · This is not what I ordered / booked.</td></tr><tr><th>negociar</th><td>Could you make an exception? · Would you be willing to…? · I will take it if you lower the price.</td></tr><tr><th>cerrar</th><td>That works for me. · Let us settle on… · I appreciate your help.</td></tr></table><p>Tono: firme pero cortés. En EE. UU. suele ayudar pedir hablar con un <b>manager</b> y dejar claro qué solución esperas (a refund, a new room, a discount).</p>',ex:[["I'm afraid there's a problem with my room.","Me temo que hay un problema con mi habitación."],["I would like to request a refund.","Me gustaría solicitar un reembolso."],["Would it be possible to change rooms?","¿Sería posible cambiar de habitación?"],["I'll take it if you lower the price.","Me lo quedo si baja el precio."]]}],
+ q:[['c',"I'm ___ there's a problem with my room.","afraid",["scared","sorry about","afraid of"],"I'm afraid there's…"],
+ ['c',"I would like to ___ a refund.","request",["ask","say","claim for"],"Request a refund."],
+ ['c',"Would it be ___ to change my room?","possible",["can","able","probably"],"Would it be possible to…?"],
+ ['c',"I'd appreciate it if you ___ fix it today.","could",["can to","fixing","be able"],"I'd appreciate it if you could…"],
+ ['c',"I'm not ___ with the service.","satisfied",["satisfying","satisfy","satisfaction"],"Not satisfied with."],
+ ['c',"Could you make an ___? I really need a late checkout.","exception",["excuse","extra","exchange"],"Make an exception."],
+ ['c',"Would you be ___ to offer a discount?","willing",["want","ready of","going"],"Would you be willing to…?"],
+ ['c',"I'll take it ___ you lower the price.","if",["when","because","unless"],"Condición para negociar."],
+ ['t',"I'm writing to ___ about my reservation. (complain)","complain","Complain about."],
+ ['b',"Me gustaría solicitar un reembolso.","I would like to request a refund."]]},
+{id:'c19',n:'Question tags, so / such y artículos',es:'Etiquetas finales, respuestas cortas, so… that y a / the / sin artículo',ic:'❓',min:12,mcer:'Interrogación; énfasis y consecuencia; determinación (artículos)',
+ goals:['Cerrar una frase con una question tag','Responder con So do I / Neither do I','Elegir a, the o ningún artículo con seguridad'],
+ st:[{t:'Tags, respuestas y artículos',h:'<p><b>Question tag</b>: frase positiva → tag negativa; frase negativa → tag positiva; mismo auxiliar. You are coming, aren\'t you? She doesn\'t like coffee, does she? Excepciones: Let\'s go, shall we? I am late, aren\'t I?</p><p><b>Respuestas cortas</b>: I love Miami. — So do I. I can\'t swim. — Neither can I. I\'m tired. — So am I.</p><p><b>so / such … that</b>: so + adjetivo (so good that…); such + (a) + nombre (such a good film that…).</p><p><b>Artículos</b>: a / an = uno cualquiera (an honest person); the = ya sabemos cuál o es único (the Statue of Liberty); sin artículo para generalizar con plurales e incontables (I love music).</p>',ex:[["You're coming tonight, aren't you?","Vienes esta noche, ¿verdad?"],["I can't swim. — Neither can I.","No sé nadar. — Yo tampoco."],["It was such a good film that we watched it twice.","Fue una película tan buena que la vimos dos veces."],["I love music, but I don't like the music in this bar.","Me encanta la música, pero no me gusta la música de este bar."]]}],
+ q:[['c',"You're coming tonight, ___?","aren't you",["don't you","are you","do you"],"Positiva → tag negativa con el mismo verbo."],
+ ['c',"She doesn't like coffee, ___?","does she",["doesn't she","is she","does it"],"Negativa → tag positiva."],
+ ['c',"Let's go to the beach, ___?","shall we",["will we","do we","aren't we"],"Let's… shall we?"],
+ ['c',"A: I love Miami. B: ___ I.","So do",["Neither do","So am","Do so"],"Coincidencia afirmativa: So do I."],
+ ['c',"A: I can't swim. B: ___ I.","Neither can",["So can","Neither do","Nor am"],"Coincidencia negativa: Neither can I."],
+ ['c',"It was ___ a good film that we watched it twice.","such",["so","very","too"],"Such + a + nombre."],
+ ['c',"The film was ___ good that we watched it twice.","so",["such","too","enough"],"So + adjetivo."],
+ ['c',"She is ___ honest person.","an",["a","the","—"],"Honest empieza por sonido vocálico: an."],
+ ['c',"I love ___ music. (en general)","no article",["the","a","an"],"Generalizar con incontables: sin artículo."],
+ ['b',"¿Vienes esta noche, verdad?","You are coming tonight, aren't you?"]]},
+{id:'c20',n:'Adjetivos y adverbios',es:'Adjetivos compuestos, the + adjetivo, -ed / -ing y posición del adverbio',ic:'🎨',min:12,mcer:'Cualidad y modificación; orden de palabras; adverbios',
+ goals:['Formar adjetivos compuestos (a ten-minute walk)','Usar the + adjetivo para grupos (the elderly)','Colocar bien los adverbios de frecuencia y modo'],
+ st:[{t:'Adjetivos y adverbios',h:'<p><b>Compuestos</b> con guion: el nombre va en singular. a ten-<b>minute</b> walk, a three-<b>hour</b> flight, a well-known author, a high-paid job.</p><p><b>The + adjetivo</b> = grupo de personas: the elderly, the poor, the unemployed, the rich.</p><p><b>-ed / -ing</b>: -ing describe lo que causa la emoción (The film was boring); -ed lo que siente la persona (I was bored).</p><p><b>Adverbios</b>: frecuencia (always, never, usually) antes del verbo principal y después de be: She always gets up early. He is never late. De modo (quickly, carefully) al final o tras el objeto. <b>hard</b> = mucho esfuerzo; <b>hardly</b> = casi no.</p>',ex:[["It was a three-hour flight.","Fue un vuelo de tres horas."],["The elderly often need more help.","Las personas mayores suelen necesitar más ayuda."],["I was bored because the film was boring.","Estaba aburrido porque la película era aburrida."],["She works very hard.","Trabaja muchísimo."]]}],
+ q:[['c',"It was a ten-___ walk.","minute",["minutes","minuted","minute's"],"En el compuesto, el nombre va en singular."],
+ ['c',"He is a well-___ author.","known",["know","knowing","knew"],"Well-known."],
+ ['c',"The ___ often have less access to healthcare.","poor",["poorly","poorness","a poor"],"The + adjetivo = grupo."],
+ ['c',"Elige la frase correcta.","She always gets up early.",["She gets always up early.","She gets up always early.","She always early gets up."],"Frecuencia antes del verbo."],
+ ['c',"The film was really ___. I almost fell asleep.","boring",["bored","bore","bores"],"-ing: lo que causa."],
+ ['c',"I was ___ by the long speech.","bored",["boring","bore","boredom"],"-ed: lo que siento."],
+ ['c',"She spoke ___ about her trip.","enthusiastically",["enthusiastic","enthusiasm","enthusiast"],"Adverbio de modo."],
+ ['c',"She works very ___. She never stops.","hard",["hardly","harder","hardness"],"Hard = mucho; hardly = casi no."],
+ ['t',"We took a three-___ flight. (hour)","hour","Singular en el compuesto."],
+ ['b',"Fue un vuelo de tres horas.","It was a three-hour flight."]]},
+{id:'c21',n:'Léxico: trabajo, ley y sociedad',es:'Contratos, empleo, justicia y cambio social',ic:'🏢',min:12,mcer:'Léxico: trabajo y emprendimiento, justicia, sociedad y cambio social',
+ goals:['Hablar de trabajo y condiciones laborales','Entender vocabulario legal básico','Describir cambios sociales y sociedades multiculturales'],
+ st:[{t:'Vocabulario por ámbitos',h:'<table class="mini"><tr><th>trabajo</th><td>part-time / full-time job · contract · raise (aumento) · to be fired (despedido) · to resign · employer / employee · colleague</td></tr><tr><th>ley</th><td>law · crime · fine (multa) · lawsuit (demanda) · to sue (demandar) · witness · to be arrested</td></tr><tr><th>sociedad</th><td>multicultural society · gender equality · social change · immigration · human rights</td></tr></table><p>En EE. UU. se dice <b>raise</b> para un aumento de sueldo; <b>a rise</b> es lo habitual en el Reino Unido.</p>',ex:[["I'd like to ask for a raise.","Me gustaría pedir un aumento."],["He was fired for being late.","Lo despidieron por llegar tarde."],["She got a fine for parking illegally.","Le pusieron una multa por aparcar mal."],["Miami is a multicultural city.","Miami es una ciudad multicultural."]]}],
+ q:[['c',"I have a ___ job: I work four hours a day.","part-time",["full-time","half-day time","partial"],"Part-time = a tiempo parcial."],
+ ['c',"I'd like to ask my boss for a ___.","raise",["rise up","lift","grow"],"Raise = aumento de sueldo (EE. UU.)."],
+ ['c',"He was ___ for being late too often.","fired",["hired","retired","promoted"],"Fired = despedido."],
+ ['c',"Before you start, you must sign the ___.","contract",["contact","content","contrast"],"Contract = contrato."],
+ ['c',"¿Qué significa «lawsuit»?","demanda judicial",["abogado","ley nueva","juez"],"Lawsuit = demanda."],
+ ['c',"She got a ___ for parking illegally.","fine",["fee","tip","tax"],"Fine = multa."],
+ ['c',"¿Qué significa «gender equality»?","igualdad de género",["identidad nacional","edad mínima","tipo de contrato"],"Equality = igualdad."],
+ ['c',"Miami is a ___ city: people from many countries live there.","multicultural",["monocultural","cultureless","unicultural"],"Multicultural."],
+ ['t',"He was ___ (fire) for being late.","fired","Participio de fire: fired."],
+ ['b',"Cambió de trabajo el año pasado.","She changed jobs last year."]]},
+{id:'c22',n:'Léxico: tecnología, consumo y medios',es:'Compras online, devoluciones, redes sociales y publicidad',ic:'📱',min:12,mcer:'Léxico: ciencia y tecnología, comercio y consumo, medios de comunicación',
+ goals:['Hablar de compras online y devoluciones','Describir ventajas y desventajas de la tecnología','Entender vocabulario de medios y publicidad'],
+ st:[{t:'Vocabulario por ámbitos',h:'<table class="mini"><tr><th>tecnología</th><td>to download · to upload · software update · drawback (inconveniente) · advantage · device</td></tr><tr><th>consumo</th><td>online shopping · consumer habits · to return an item · receipt · warranty (garantía) · refund</td></tr><tr><th>medios</th><td>the media · social media · advertisement (anuncio) · headline · to go viral · fake news</td></tr></table><p><b>advertisement / ad</b> = anuncio publicitario; <b>announcement</b> = comunicado.</p>',ex:[["I buy almost everything online.","Compro casi todo por internet."],["You can return the item within 30 days.","Puedes devolver el artículo en 30 días."],["The main drawback is the price.","El principal inconveniente es el precio."],["That ad went viral.","Ese anuncio se hizo viral."]]}],
+ q:[['c',"Para bajar un archivo de internet a tu móvil, lo ___.","download",["upload","delete","post"],"Download = descargar."],
+ ['c',"¿Cómo se dice «compras por internet»?","online shopping",["net buying","web shop store","internet shoppy"],"Online shopping."],
+ ['c',"If you don't like it, you can ___ the item within 30 days.","return",["restore","turn","give out"],"Return = devolver."],
+ ['c',"The main ___ of this phone is the battery.","drawback",["advantage","drawer","front"],"Drawback = inconveniente."],
+ ['c',"«Social media» significa ___.","redes sociales",["medios sociales de prensa","periódico local","asuntos sociales"],"Social media."],
+ ['c',"Un anuncio publicitario es un/una ___.","advertisement",["announcement","adventure","advisor"],"Advertisement = anuncio publicitario."],
+ ['c',"Keep your ___ in case you need a refund.","receipt",["recipe","reception","recipient"],"Receipt = recibo o ticket."],
+ ['c',"¿Qué significa «update»?","actualizar",["subir","borrar","imprimir"],"Update = actualizar."],
+ ['t',"I buy almost everything ___. (online)","online","Online = por internet."],
+ ['b',"Compro casi todo por internet.","I buy almost everything online."]]},
+];
+const B2M={};B2.forEach(l=>{l.lvl='B2';B2M[l.id]=l;B1M[l.id]=l});
 /* ===== Mini-lecciones de gramática A1-A2 (refuerzo del plan) ===== */
 const GR=[
 {id:'g1',n:'Ser/estar y presentarse',es:'I am, you are, he is…',ic:'🙋',min:8,mcer:'A1 · identificación personal',goals:['Presentarte','Preguntar y negar con be'],
@@ -1077,10 +1368,30 @@ const TB=[
 {k:'l',lv:3,say:'Unless you have a reservation, you will probably have to wait about forty minutes.',p:'Escucha y elige qué significa.',a:'Sin reserva, probablemente esperarás unos 40 minutos',w:['Con reserva, esperarás 40 minutos','Sin reserva, no hay mesa','Hay mesa libre ahora'],e:'Unless = a menos que.'},
 {k:'l',lv:3,say:'If I were you, I would book the tour in advance because it is usually sold out.',p:'Escucha y elige el consejo.',a:'Reservar la excursión con antelación',w:['Cancelar la excursión','Ir sin reservar','Comprar entradas en la puerta'],e:'I would book in advance.'},
 {k:'l',lv:3,say:'The manager told me that my room would be ready after two o\'clock.',p:'Escucha y elige qué dijo el gerente.',a:'Que la habitación estaría lista después de las dos',w:['Que la habitación ya está lista','Que no hay habitación','Que debo irme a las dos'],e:'Estilo indirecto: would be ready.'},
-{k:'l',lv:3,say:'Could you tell me whether there is a pharmacy open at this hour?',p:'Escucha y elige qué preguntan.',a:'Si hay una farmacia abierta a esta hora',w:['Cuánto cuesta la farmacia','Dónde está el hotel','A qué hora cierran los bancos'],e:'Pregunta indirecta con whether.'}
+{k:'l',lv:3,say:'Could you tell me whether there is a pharmacy open at this hour?',p:'Escucha y elige qué preguntan.',a:'Si hay una farmacia abierta a esta hora',w:['Cuánto cuesta la farmacia','Dónde está el hotel','A qué hora cierran los bancos'],e:'Pregunta indirecta con whether.'},
+{k:'v',lv:4,p:'¿Qué significa «reluctant»?',a:'reacio',w:['ansioso','cansado','generoso'],e:'Reluctant = reacio, poco dispuesto.'},
+{k:'v',lv:4,p:'¿Qué significa «overwhelmed»?',a:'abrumado',w:['sorprendido','aburrido','satisfecho'],e:'Overwhelmed = abrumado.'},
+{k:'v',lv:4,p:'¿Qué significa «reliable»?',a:'fiable',w:['alquilable','relajante','rápido'],e:'Reliable = fiable.'},
+{k:'v',lv:4,p:'¿Qué significa «postpone»?',a:'aplazar',w:['publicar','preparar','prometer'],e:'Postpone = aplazar.'},
+{k:'v',lv:4,p:'¿Qué significa «reimbursement»?',a:'reembolso de gastos',w:['reunión','refuerzo','recordatorio'],e:'Reimbursement = reembolso de un gasto.'},
+{k:'g',lv:4,p:'Completa: If I ___ the money, I would have bought it.',a:'had had',w:['have had','would have','had'],e:'Tercer condicional: had + participio (had had).'},
+{k:'g',lv:4,p:'Completa: I wish I ___ harder when I was at school.',a:'had studied',w:['studied','would study','have studied'],e:'Lamento del pasado: wish + past perfect.'},
+{k:'g',lv:4,p:'Completa: Not only ___ the flight delayed, but it was also cancelled.',a:'was',w:['did','does','were'],e:'Not only + inversión.'},
+{k:'g',lv:4,p:'Completa: She hasn\'t replied. She must ___ the message.',a:'have missed',w:['has missed','missed','to have missed'],e:'Deducción en el pasado: must have + participio.'},
+{k:'g',lv:4,p:'Completa: By the time we arrive, the film ___.',a:'will have started',w:['will start','is starting','would start'],e:'Future perfect.'},
+{k:'g',lv:4,p:'Completa: He denied ___ the window.',a:'breaking',w:['to break','break','to have break'],e:'Deny + -ing.'},
+{k:'r',lv:4,p:'Lee: «Due to unforeseen circumstances, the 9:00 flight to Chicago has been postponed until 11:30. Passengers are advised to remain in the departure lounge.» ¿Qué deben hacer los pasajeros?',a:'Esperar en la sala de embarque',w:['Irse a casa','Ir a la puerta 11','Pedir un reembolso ya'],e:'Remain in the departure lounge.'},
+{k:'r',lv:4,p:'Lee: «Although the hotel is a little far from the beach, the staff were so helpful that we hardly noticed.» ¿Qué destaca el autor?',a:'Que el personal fue muy atento',w:['Que el hotel está en la playa','Que el personal fue antipático','Que no le gustó el hotel'],e:'Staff were so helpful.'},
+{k:'r',lv:4,p:'Lee: «Had we booked earlier, we would have got a much better price.» ¿Qué pasó?',a:'Reservaron tarde y pagaron más',w:['Reservaron pronto y pagaron menos','No reservaron nada','Consiguieron un descuento'],e:'Tercer condicional: no reservaron antes.'},
+{k:'r',lv:4,p:'Lee: «Contrary to popular belief, tipping is not included in the bill in most US restaurants.» ¿Qué dice el texto?',a:'Que normalmente la propina no va incluida',w:['Que la propina es ilegal','Que la propina siempre va incluida','Que nunca hay que dejar propina'],e:'Tipping is not included.'},
+{k:'l',lv:4,say:'I\'m afraid the flight has been delayed by about an hour.',p:'Escucha y elige qué significa.',a:'Me temo que el vuelo se ha retrasado una hora aproximadamente.',w:['Me temo que el vuelo ya ha salido.','El vuelo se ha cancelado hoy.','Mi vuelo llega dentro de una hora.'],e:'Delayed by about an hour.'},
+{k:'l',lv:4,say:'Would it be possible to get a refund for the extra charge?',p:'Escucha y elige qué piden.',a:'Que les devuelvan el cargo extra',w:['Que les cobren más','Que les cambien de habitación','Que les den la cuenta'],e:'Refund for the extra charge.'},
+{k:'l',lv:4,say:'If I had known it was so far, I would have taken a taxi.',p:'Escucha y elige qué significa.',a:'Si hubiera sabido que estaba tan lejos, habría cogido un taxi.',w:['Como sabía que estaba lejos, cogí un taxi.','Si está lejos, cogeré un taxi.','No sabía que había taxis.'],e:'Tercer condicional.'},
+{k:'l',lv:4,say:'By the time we got there, they had already closed.',p:'Escucha y elige qué pasó.',a:'Cuando llegamos, ya habían cerrado.',w:['Cuando llegamos, estaban abriendo.','Llegamos antes de que cerraran.','No llegamos a ir.'],e:'Past perfect: ya habían cerrado.'},
+{k:'l',lv:4,say:'Hardly anyone knew about the change of plan.',p:'Escucha y elige qué significa.',a:'Casi nadie sabía lo del cambio de plan.',w:['Todos sabían lo del cambio.','Nadie quería cambiar el plan.','Hubo muchos cambios de plan.'],e:'Hardly anyone = casi nadie.'},
 ];
 /* ===== NIVEL ACTUAL, REPETICIÓN ESPACIADA Y GENERADORES DE PREGUNTAS ===== */
-const LVN=['','A1','A2','B1'];
+const LVN=['','A1','A2','B1','B2'];
 const LV=()=>S.test&&S.test.lv?S.test.lv:(S.prof&&S.prof.lv0?S.prof.lv0:1);
 const modPh=(m,lv)=>m.ph.filter(p=>p.lv<=(lv||LV()));
 const allPh=lv=>MODS.reduce((a,m)=>a.concat(modPh(m,lv)),[]);
@@ -1239,7 +1550,9 @@ function buildPlan(){
   const extras=MODS.filter(m=>!m.min).map(m=>m.id).sort((a,b)=>{const fa=fears.indexOf(a)>=0?0:1,fb=fears.indexOf(b)>=0?0:1;if(fa!==fb)return fa-fb;return (GOAL_EXTRAS[goal]||[]).indexOf(a)-(GOAL_EXTRAS[goal]||[]).indexOf(b)});
   extras.forEach(id=>{const its=modItems(id);const cost=its.reduce((a,i)=>a+i.min,0);if(used+cost<=budget-reserve){its.forEach(i=>items.push(i));used+=cost}});
   /* lecciones del curso B1 si hay hueco (nivel A2 en adelante) */
-  if(lv>=2){const cap=lv===3?B1.length:4;let c=0;B1.forEach(l=>{if(c<cap&&used+l.min<=budget-reserve){items.push({t:'b1',les:l.id,min:l.min});used+=l.min;c++}})}
+  if(lv>=2){const cap=lv===3?B1.length:(lv===4?2:4);let c=0;B1.forEach(l=>{if(c<cap&&used+l.min<=budget-reserve){items.push({t:'b1',les:l.id,min:l.min});used+=l.min;c++}})}
+  /* lecciones del curso B2 (solo nivel B2) */
+  if(lv>=4){let c=0;B2.forEach(l=>{if(used+l.min<=budget-reserve){items.push({t:'b1',les:l.id,min:l.min});used+=l.min;c++}})}
   items.push({t:'final',min:12});used+=12;
   let cum=0;const per=days*mins;
   items.forEach(i=>{i.w=Math.floor(cum/per)+1;cum+=i.min});
@@ -1253,7 +1566,7 @@ function itemLabel(it){
   if(it.t==='sim'){const s=SIMS.find(x=>x.id===it.sim);return{ic:'🎬',t:'Simulación · '+s.t,s:MOD[it.mod].n}}
   if(it.t==='drill')return{ic:'🎧',t:'Escucha rápida · '+MOD[it.mod].n,s:'Acento americano a velocidad real'};
   if(it.t==='gr'){const l=GRM[it.les];return{ic:l.ic,t:'Gramática · '+l.n,s:l.es}}
-  if(it.t==='b1'){const l=B1M[it.les];return{ic:l.ic,t:'B1 · '+l.n,s:l.es}}
+  if(it.t==='b1'){const l=B1M[it.les];return{ic:l.ic,t:(l.lvl||'B1')+' · '+l.n,s:l.es}}
   return{ic:'🏁',t:'Test final',s:'Compara tu nivel con el del principio'}}
 /* ----- adaptación: punto débil de un módulo y recomendaciones ----- */
 const SKN={oral:'comprensión oral',vocab:'vocabulario y frases',struct:'estructura de las frases'};
@@ -1269,7 +1582,7 @@ function tbQ(it,idx){const base={k:'choice',kind:TKIND[it.k],blk:it.k,_tb:idx,an
   if(it.k==='l')return Object.assign(base,{p:esc(it.p),hide:true,say:it.say,rate:fastRate()});
   return Object.assign(base,{p:esc(it.p)})}
 function pickTB(k,lv){const free=i=>!TS.used.has(i)&&TB[i].k===k;let c=[];
-  [lv,lv-1,lv+1,lv-2,lv+2].forEach(L=>{if(!c.length&&L>=1&&L<=3)c=TB.map((x,i)=>i).filter(i=>free(i)&&TB[i].lv===L)});
+  [lv,lv-1,lv+1,lv-2,lv+2].forEach(L=>{if(!c.length&&L>=1&&L<=4)c=TB.map((x,i)=>i).filter(i=>free(i)&&TB[i].lv===L)});
   if(!c.length)c=TB.map((x,i)=>i).filter(free);
   if(!c.length)return -1;return one(c)}
 function startLevelTest(){if(!S.set.voice){toast('🔇 Activa el sonido en Yo → Ajustes para hacer el test');return}TS={cur:2,used:new Set(),res:[],streak:0,n:0,mode:'level'};
@@ -1277,13 +1590,14 @@ function startLevelTest(){if(!S.set.voice){toast('🔇 Activa el sonido en Yo �
   startSession([tbQ(TB[i],i)],{test:true,total:30,per:0,title:'Test de nivel',more:testNext,custom:testResult,onAnswer:tsRec})}
 function tsRec(q,ok){const it=TB[q._tb];TS.res.push({k:it.k,lv:it.lv,ok:ok})}
 function testNext(q,ok){TS.n++;
-  if(ok){TS.streak++;if(TS.streak>=2){TS.cur=Math.min(3,TS.cur+1);TS.streak=0}}else{TS.cur=Math.max(1,TS.cur-1);TS.streak=0}
+  if(ok){TS.streak++;if(TS.streak>=2){TS.cur=Math.min(4,TS.cur+1);TS.streak=0}}else{TS.cur=Math.max(1,TS.cur-1);TS.streak=0}
   if(TS.n>=30)return null;
   const i=pickTB(TCYCLE[TS.n%TCYCLE.length],TS.cur);if(i<0)return null;TS.used.add(i);return tbQ(TB[i],i)}
-function estimate(res){const by={1:{ok:0,tot:0},2:{ok:0,tot:0},3:{ok:0,tot:0}};res.forEach(r=>{by[r.lv].tot++;if(r.ok)by[r.lv].ok++});
+function estimate(res){const by={1:{ok:0,tot:0},2:{ok:0,tot:0},3:{ok:0,tot:0},4:{ok:0,tot:0}};res.forEach(r=>{by[r.lv].tot++;if(r.ok)by[r.lv].ok++});
   const a=L=>by[L].tot?by[L].ok/by[L].tot:0;let lv=1;
   if(by[2].tot>=2&&a(2)>=.6)lv=2;
   if(by[3].tot>=3&&a(3)>=.6&&(by[2].tot<2||a(2)>=.5))lv=3;
+  if(lv===3&&by[4].tot>=3&&a(4)>=.6&&a(3)>=.6)lv=4;
   const cat={v:{ok:0,tot:0},g:{ok:0,tot:0},r:{ok:0,tot:0},l:{ok:0,tot:0}};res.forEach(r=>{cat[r.k].tot++;if(r.ok)cat[r.k].ok++});
   const tot=res.length,ok=res.filter(r=>r.ok).length;return{lv:lv,cat:cat,score:tot?Math.round(ok/tot*100):0,n:tot}}
 const CATN={v:'Vocabulario',g:'Gramática',r:'Lectura',l:'Comprensión oral'};
@@ -1298,7 +1612,7 @@ function testResult(res){
   const diff=e.score-prev.score;
   $('#app').innerHTML='<div class="card" style="text-align:center;margin-top:16px"><div class="big">🏁</div><h1>Test final</h1><p>Nivel inicial <b>'+LVN[prev.lv]+'</b> → ahora <b>'+LVN[e.lv]+'</b></p><p class="muted">Aciertos: '+prev.score+' % → '+e.score+' % ('+(diff>=0?'+':'')+diff+' puntos)</p></div><div class="card"><h3>Habilidades ahora</h3>'+catBars(e.cat)+'</div><button class="btn block" data-a="done">Continúa</button>'}
 function startFinalTest(){if(!S.set.voice){toast('🔇 Activa el sonido en Yo → Ajustes para hacer el test');return}const used=new Set((S.test&&S.test.used)||[]);
-  const want=[[1,6],[2,7],[3,7]];const picks=[];
+  const want=[[1,4],[2,5],[3,6],[4,5]];const picks=[];
   want.forEach(w=>{const pool=TB.map((x,i)=>i).filter(i=>TB[i].lv===w[0]&&!used.has(i));const pool2=TB.map((x,i)=>i).filter(i=>TB[i].lv===w[0]&&used.has(i));
     shuf(pool).concat(shuf(pool2)).slice(0,w[1]).forEach(i=>picks.push(i))});
   TS={cur:2,used:new Set(picks),res:[],streak:0,n:0,mode:'final'};
@@ -1419,7 +1733,7 @@ V.onb=()=>{if(!ONB)onbInit();const O=ONB;
   '<div class="card"><b>¿Qué te preocupa más? (elige las que quieras)</b><div class="pills">'+FEARS.map(f=>'<button class="pill'+(O.fears.indexOf(f[0])>=0?' on':'')+'" data-a="onfear" data-v="'+f[0]+'">'+f[1]+' '+f[2]+'</button>').join('')+'</div></div>'+
   '<div class="card"><b>¿Cuánto falta para el viaje?</b><div class="pills">'+[2,3,4,6,8,12].map(w=>'<button class="pill'+(!O.date&&O.weeks===w?' on':'')+'" data-a="onset" data-v="weeks:'+w+'">'+w+' semanas</button>').join('')+'</div><label for="ond" class="muted">…o pon la fecha del viaje (opcional):</label><input id="ond" class="fld" type="date" min="'+today()+'" value="'+esc(O.date)+'"></div>'+
   '<div class="card"><b>Minutos al día</b><div class="pills">'+[10,15,20,30,45].map(m=>'<button class="pill'+(O.mins===m?' on':'')+'" data-a="onset" data-v="mins:'+m+'">'+m+' min</button>').join('')+'</div><b>Días por semana</b><div class="pills">'+[3,5,7].map(d=>'<button class="pill'+(O.days===d?' on':'')+'" data-a="onset" data-v="days:'+d+'">'+d+' días</button>').join('')+'</div></div>'+
-  '<div class="card"><b>Autoevaluación (1 = nada, 5 = muy bien)</b><p class="muted" style="margin:4px 0">Hablar</p>'+sc('speak')+'<p class="muted" style="margin:4px 0">Entender cuando me hablan</p>'+sc('listen')+'<p class="muted" style="margin:4px 0">Leer</p>'+sc('read')+'<b>Nivel que crees tener</b><div class="pills">'+[[0,'','No lo sé'],[1,'','A1 · muy básico'],[2,'','A2 · me defiendo'],[3,'','B1 · intermedio']].map(x=>'<button class="pill'+(O.lv0===x[0]?' on':'')+'" data-a="onset" data-v="lv0:'+x[0]+'">'+x[2]+'</button>').join('')+'</div><p class="muted">El test de nivel lo confirmará.</p></div>'+
+  '<div class="card"><b>Autoevaluación (1 = nada, 5 = muy bien)</b><p class="muted" style="margin:4px 0">Hablar</p>'+sc('speak')+'<p class="muted" style="margin:4px 0">Entender cuando me hablan</p>'+sc('listen')+'<p class="muted" style="margin:4px 0">Leer</p>'+sc('read')+'<b>Nivel que crees tener</b><div class="pills">'+[[0,'','No lo sé'],[1,'','A1 · muy básico'],[2,'','A2 · me defiendo'],[3,'','B1 · intermedio'],[4,'','B2 · avanzado']].map(x=>'<button class="pill'+(O.lv0===x[0]?' on':'')+'" data-a="onset" data-v="lv0:'+x[0]+'">'+x[2]+'</button>').join('')+'</div><p class="muted">El test de nivel lo confirmará.</p></div>'+
   '<button class="btn block" data-a="onbsave">Continuar al test de nivel</button><p class="muted" style="text-align:center">Tus datos no salen de este dispositivo.</p>'};
 ACT.onset=v=>{const i=v.indexOf(':');const k=v.slice(0,i),x=v.slice(i+1);ONB[k]=(k==='goal')?x:+x;if(k==='weeks')ONB.date='';showCur()};
 ACT.onself=v=>{const a=v.split(':');ONB.self[a[0]]=+a[1];showCur()};
@@ -1430,7 +1744,7 @@ ACT.onbsave=()=>{const O=ONB;O.name=(O.name||'').trim();if(!O.name){toast('Escri
   S.prof={name:O.name,goal:O.goal,fears:O.fears.slice(),weeks:weeks,date:O.date,mins:O.mins,days:O.days,self:O.self,lv0:lv0};S.plan=null;save();
   go('tintro',null,false)};
 /* ----- TEST: intro ----- */
-V.tintro=()=>'<h1>Test de nivel</h1><p class="muted">Paso 2 de 3</p><div class="card"><p>Son hasta <b>30 preguntas</b> (≈ 12 min) de vocabulario, gramática, lectura y comprensión oral. Se adapta a ti: si aciertas suben de dificultad y si fallas bajan.</p><p>Al final verás tu nivel (A1, A2 o B1) y tus puntos débiles. <b>No te enseña las respuestas</b> durante el test.</p><p class="muted">Necesitas sonido para las preguntas de escucha.</p></div><button class="btn block" data-a="stest">🧪 Empezar el test</button><button class="btn sec block" style="margin-top:10px" data-a="skiptest">Saltar y usar mi nivel estimado ('+LVN[(S.prof&&S.prof.lv0)||1]+')</button>';
+V.tintro=()=>'<h1>Test de nivel</h1><p class="muted">Paso 2 de 3</p><div class="card"><p>Son hasta <b>30 preguntas</b> (≈ 12 min) de vocabulario, gramática, lectura y comprensión oral. Se adapta a ti: si aciertas suben de dificultad y si fallas bajan.</p><p>Al final verás tu nivel (A1, A2, B1 o B2) y tus puntos débiles. <b>No te enseña las respuestas</b> durante el test.</p><p class="muted">Necesitas sonido para las preguntas de escucha.</p></div><button class="btn block" data-a="stest">🧪 Empezar el test</button><button class="btn sec block" style="margin-top:10px" data-a="skiptest">Saltar y usar mi nivel estimado ('+LVN[(S.prof&&S.prof.lv0)||1]+')</button>';
 ACT.tintro=()=>go('tintro',null,true);
 ACT.stest=()=>startLevelTest();ACT.rtest=()=>startLevelTest();
 ACT.skiptest=()=>{S.test={lv:(S.prof&&S.prof.lv0)||1,cat:{},score:0,date:today(),used:[],n:0,skipped:true};S.plan=null;save();ACT.mkplan()};
@@ -1497,7 +1811,7 @@ ACT.flashm=id=>{const ps=modPh(MOD[id]);startSession(shuf(ps).map(p=>({k:'flash'
 ACT.learned=id=>{const p=prog(id);if(!p.learn){p.learn=true;addXP(10)}save();toast('✅ Guardado');up()};
 /* ----- lecciones (B1 y refuerzo A1-A2) ----- */
 V.lesson=id=>{const l=B1M[id]||GRM[id];if(!l)return'<p>No encuentro la lección.</p>';const isB1=!!B1M[id];
-  let h='<h1>'+l.ic+' '+esc(l.n)+'</h1><p class="muted">'+esc(l.es)+'</p><div class="chipx">'+(isB1?'Nivel B1':'Refuerzo A1-A2')+'</div><div class="chipx">'+l.min+' min</div>';
+  let h='<h1>'+l.ic+' '+esc(l.n)+'</h1><p class="muted">'+esc(l.es)+'</p><div class="chipx">'+(isB1?'Nivel '+(l.lvl||'B1'):'Refuerzo A1-A2')+'</div><div class="chipx">'+l.min+' min</div>';
   h+='<div class="card"><b>Objetivos</b><ul>'+l.goals.map(g=>'<li>'+esc(g)+'</li>').join('')+'</ul><p class="muted" style="margin:0">Referencia: '+esc(l.mcer)+'</p></div>';
   l.st.forEach(s=>{h+='<h2>'+esc(s.t)+'</h2><div class="card">'+s.h+'</div><div class="card">'+s.ex.map(e=>'<div class="ex">'+spk(e[0])+'<div class="grow"><b>'+esc(e[0])+'</b><div class="muted">'+esc(e[1])+'</div></div></div>').join('')+'</div>'});
   const best=S.les[id]&&S.les[id].best;
@@ -1518,7 +1832,7 @@ V.practice=()=>{let h='<h1>Práctica</h1>'+srsCard();
   const nw=Object.keys(S.weak).length;h+=row('💪','Frases débiles',nw+' pendientes','weak');
   h+=row('🧭','Cultura práctica','Propinas, impuestos, 911… (8 preguntas)','cult');
   h+=row('🎬','Simulaciones','Conversaciones reales, '+SIMS.length+' escenas','go','sims');
-  h+=row('📘','Curso B1 completo','18 lecciones de gramática, léxico y funciones','go','b1list');
+  h+=row('📘','Curso B1 completo','18 lecciones de gramática, léxico y funciones','go','b1list');h+=row('📗','Curso B2 completo','22 lecciones de nivel avanzado','go','b2list');
   h+=row('🧱','Refuerzo A1-A2','6 mini-lecciones de gramática básica','go','grs');
   h+=row('🧪','Test de nivel','Repítelo cuando quieras','rtest');
   h+=row('🏁','Test final','Compara con tu nivel inicial'+(S.fin?' · último: '+S.fin.score+' %':''),'ftest');
@@ -1526,6 +1840,8 @@ V.practice=()=>{let h='<h1>Práctica</h1>'+srsCard();
   return h};
 V.sims=()=>{let h='<h1>🎬 Simulaciones</h1><p class="muted">Conversaciones con respuestas a elegir. Sin conexión.</p>';
   MODS.forEach(m=>{const l=simsOf(m.id);if(l.length){h+='<h2>'+m.ic+' '+esc(m.n)+'</h2>'+l.map(s=>row('🎬',esc(s.t),'Mejor: '+starsTxt(simBest(s.id))+' · '+LVN[s.lv]+'+','sim',s.id,simBest(s.id)?'done':'')).join('')}});return h};
+V.b2list=()=>{let h='<h1>📗 Curso B2</h1><p class="muted">Gramática, léxico y funciones del nivel avanzado. Recomendado desde B1 sólido.</p>';
+  h+=B2.map(l=>{const b=S.les[l.id]&&S.les[l.id].best;return row(l.ic,esc(l.n),esc(l.es)+(b!=null?' · mejor '+b+' %':''),'lesson',l.id,b>=70?'done':'')}).join('');return h};
 V.b1list=()=>{let h='<h1>📘 Curso B1</h1><p class="muted">Gramática, léxico y funciones del nivel intermedio. Recomendado desde A2.</p>';
   h+=B1.map(l=>{const b=S.les[l.id]&&S.les[l.id].best;return row(l.ic,esc(l.n),esc(l.es)+(b!=null?' · mejor '+b+' %':''),'lesson',l.id,b>=70?'done':'')}).join('');return h};
 V.grs=()=>{let h='<h1>🧱 Refuerzo A1-A2</h1><p class="muted">Gramática básica para viajar.</p>';
@@ -1572,12 +1888,13 @@ ACT.bkimp=()=>{const t=$('#bkt');if(!t)return;try{const o=JSON.parse(t.value);if
 ACT.reset=()=>{if(confirm('¿Borrar todo tu progreso y tus datos de este dispositivo?')){try{localStorage.removeItem(KEY)}catch(e){}load();applyTheme();NAV=[];go('home')}};
 /* ===== TEMARIO Y REFERENCIAS ===== */
 const COV=[['b01','Aspecto perfectivo; anterioridad y duración (for / since)'],['b02','Narrar en pasado; aspecto durativo y puntual'],['b03','Aspecto habitual; contraste pasado / presente'],['b04','Aspecto prospectivo; intención, predicción, promesa, oferta'],['b05','Relaciones lógicas: condición'],['b06','Hipótesis, deseo, consejo'],['b07','Modalidad: obligación, necesidad, prohibición, permiso'],['b08','Consejos, sugerencias, conjetura y probabilidad'],['b09','Estados y procesos; focalización (pasiva)'],['b10','Informar y transmitir mensajes (estilo indirecto)'],['b11','Cualidad y descripción (relativos)'],['b12','Relaciones lógicas: finalidad; patrones verbales'],['b13','Cantidad (grado), comparación y resultado'],['b14','Cantidad (número y cantidad)'],['b15','Causa, resultado, concesión, contraste, correlación'],['b16','Interrogación, cortesía y petición de información'],['b17','Léxico (viajes, compras, comunicación) y formación de palabras'],['b18','Funciones expresivas: opinión, acuerdo, decepción, preocupación, esperanza, disculpa, queja']];
+const COV2=[['c01','Aspecto durativo y perfectivo hasta el presente'],['c02','Anterioridad en el pasado; narración'],['c03','Futuro: aspecto durativo y perfectivo; planes y horarios'],['c04','Condición e hipótesis irreal (tercer condicional y mixtos)'],['c05','Deseo, arrepentimiento y consejo (wish, would rather, had better)'],['c06','Modalidad epistémica: certeza, duda, conjetura'],['c07','Estados, eventos, procesos y focalización (pasiva, causativa)'],['c08','Informar y transmitir: estilo indirecto y verbos de transmisión'],['c09','Cualidad y descripción: oraciones de relativo y reducidas'],['c10','Patrones verbales: gerundio e infinitivo con cambio de significado'],['c11','Énfasis y orden de palabras marcado (inversión, cleft)'],['c12','Relaciones lógicas: contraste, concesión, causa, finalidad, resultado'],['c13','Léxico: phrasal verbs'],['c14','Léxico: colocaciones y formación de palabras'],['c15','Registro y expresiones idiomáticas'],['c16','Funciones: opinar, argumentar, concesión, matizar'],['c17','Cantidad, grado y comparación'],['c18','Funciones: reclamar, solicitar, negociar'],['c19','Interrogación (question tags), consecuencia y determinación (artículos)'],['c20','Entidad y propiedades: adjetivos y adverbios'],['c21','Léxico: trabajo, justicia y sociedad'],['c22','Léxico: tecnología, consumo y medios']];
 V.refs=()=>{
   let h='<h1>📚 Temario y referencias</h1><div class="card"><p>El nivel <b>B1</b> de esta app (18 lecciones) se ha contrastado con el currículo básico del nivel Intermedio B1 del <b>Real Decreto 1041/2017</b> (escuelas oficiales de idiomas) y con las escalas B1 del <b>MCER</b>. Los módulos de viaje cubren los ámbitos léxicos de ese currículo que importan en Miami: viajes y vacaciones, alimentación y restauración, compras, salud, transporte, bienes y servicios, relaciones sociales y lengua y comunicación.</p></div>';
   h+='<h2>Cobertura del B1</h2><div class="tw"><table class="mini"><tr><th>Lección</th><th>Categoría del currículo</th></tr>'+COV.map(c=>'<tr><td>'+esc(B1M[c[0]].n)+'</td><td>'+esc(c[1])+'</td></tr>').join('')+'</table></div>';
   h+='<h2>Funciones del B1 que se practican</h2><div class="card"><p class="muted">Aconsejar y sugerir; pedir y ofrecer información, indicaciones y avisos; opinar, acordar y discrepar; formular hipótesis; expresar necesidad, deseo, intención, promesa, orden, permiso y prohibición; expresar decepción, disgusto, preocupación, esperanza, agradecimiento y disculpa; narrar, describir y relacionarse socialmente. Se trabajan en las lecciones B1 y en las simulaciones.</p></div>';
-  h+='<h2>Lo que NO cubre</h2><div class="card"><p class="muted">No incluye producción escrita extensa, mediación formal, fonética guiada ni ensayo de examen oficial. No emite certificados ni sustituye un curso reglado. La programación concreta por cursos de una escuela oficial concreta no se ha replicado: solo se ha usado como referencia de contenidos.</p></div>';
-  h+='<h2>Fuentes consultadas (solo para contrastar el temario, sin copiar textos)</h2><div class="card"><ul><li>Consejo de Europa · MCER, Volumen Complementario (2020): rm.coe.int/16809ea0d4</li><li>Real Decreto 1041/2017 (BOE-A-2017-15367), currículo básico del nivel Intermedio B1</li><li>Programación del Departamento de Inglés, EOI de Albacete, curso 2025-26 (competencias y funciones del B1). Consultada el 12-11-2026</li></ul></div>';
+  h+='<h2>Cobertura del B2</h2><div class="card"><p class="muted">El nivel <b>B2</b> (22 lecciones) se ha contrastado con el currículo básico del nivel Intermedio B2 del Real Decreto 1041/2017 (el B2 en las escuelas oficiales de idiomas), con las escalas B2 del MCER y con la secuenciación de contenidos gramaticales y léxicos de una programación de EOI de inglés B2.1/B2.2 del curso 2025-26.</p></div><div class="tw"><table class="mini"><tr><th>Lección</th><th>Categoría del currículo</th></tr>'+COV2.map(c=>'<tr><td>'+esc(B1M[c[0]].n)+'</td><td>'+esc(c[1])+'</td></tr>').join('')+'</table></div><div class="card"><p class="muted">Funciones del B2 que se practican: certeza, duda, conjetura y escepticismo; necesidad, deseo, decisión, orden, autorización y objeción; sugerencias, condiciones e hipótesis; opinión, valoración y consejo; narración de hechos pasados y predicciones; relaciones sociales.</p></div>'+'<h2>Lo que NO cubre</h2><div class="card"><p class="muted">No incluye producción escrita extensa, mediación formal, fonética guiada ni ensayo de examen oficial. No emite certificados ni sustituye un curso reglado. La programación concreta por cursos de una escuela oficial concreta no se ha replicado: solo se ha usado como referencia de contenidos.</p></div>';
+  h+='<h2>Fuentes consultadas (solo para contrastar el temario, sin copiar textos)</h2><div class="card"><ul><li>Consejo de Europa · MCER, Volumen Complementario (2020): rm.coe.int/16809ea0d4</li><li>Real Decreto 1041/2017 (BOE-A-2017-15367), currículo básico del nivel Intermedio B1</li><li>Programación del Departamento de Inglés, EOI de Albacete, curso 2025-26 (competencias y funciones del B1). Consultada el 12-11-2026</li><li>Programación de inglés B2.1 y B2.2, EOI Navalmoral de la Mata (Extremadura), curso 2025-26: temas gramaticales y áreas léxicas. Consultada el 13-11-2026</li></ul></div>';
   h+='<h2>Información de viaje</h2><div class="card"><p class="muted">Los consejos sobre propinas, impuestos, número de emergencias o requisitos de entrada son orientativos y pueden cambiar. Comprueba siempre las webs oficiales (por ejemplo, para la autorización ESTA).</p></div>';
   h+='<h2>Licencias</h2><div class="card legal"><ul><li><b>Código</b>: MIT.</li><li><b>Contenidos del curso</b> (textos, ejercicios, simulaciones, frases): obra original, CC BY-NC 4.0.</li><li><b>Tipografías</b> Patrick Hand y Nunito (incrustadas): SIL Open Font License 1.1.</li><li>Proyecto independiente, <b>sin afiliación ni aval</b> de ninguna entidad oficial. No es un curso oficial ni emite certificados.</li><li>Privacidad: todo funciona en tu dispositivo. Sin cuentas, anuncios, cookies ni rastreo. El progreso se guarda en <code>localStorage</code>.</li></ul></div>';
   return h};

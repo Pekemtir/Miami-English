@@ -6,15 +6,16 @@ Inglés **a medida para viajar a Miami** (interfaz y explicaciones en castellano
 
 ## Cómo funciona
 1. **Cuéntame sobre ti**: nombre, para qué quieres inglés, qué te preocupa, tiempo hasta el viaje, minutos al día y autoevaluación.
-2. **Test de nivel adaptativo** (hasta 30 preguntas): vocabulario, gramática, lectura y comprensión oral con acento americano. Resultado A1 / A2 / B1 y puntos débiles.
+2. **Test de nivel adaptativo** (hasta 30 preguntas): vocabulario, gramática, lectura y comprensión oral con acento americano. Resultado A1 / A2 / B1 / B2 y puntos débiles.
 3. **Plan personalizado** generado por reglas (sin IA en vivo): nivel → dificultad; miedos y objetivo → orden de módulos; tiempo → cuántos caben; puntos débiles → más práctica en eso.
 4. **Módulos de Miami** con frases, audio, consejos culturales, práctica y **simulaciones de conversación** ramificadas.
 5. **Refuerzo sugerido** al acabar cada módulo (tú decides) y **test final** que compara con el inicial.
 
 ## Contenido
 - 9 módulos: Supervivencia, Aeropuerto y migración, Restaurante y propinas, Taxi/Uber y direcciones, Urgencias (los 5 primeros son imprescindibles); Compras, Hotel, Conversación social, Cultura y dinero (opcionales).
-- 165 frases en 3 niveles (A1, A2, B1), 14 simulaciones, 10 preguntas de cultura práctica, tarjeta de 30 frases clave.
+- 165 frases en 3 niveles (A1, A2, B1; el B2 se cubre con su curso de gramática y léxico), 14 simulaciones, 10 preguntas de cultura práctica, tarjeta de 30 frases clave.
 - **Curso B1 completo**: 18 lecciones de gramática, léxico y funciones (146 ejercicios), contrastado con el currículo del nivel Intermedio B1 (RD 1041/2017) y el MCER.
+- **Curso B2 completo**: 22 lecciones (221 ejercicios), contrastado con el currículo del nivel Intermedio B2 (RD 1041/2017), el MCER y una programación de EOI de inglés B2.1/B2.2.
 - 6 mini-lecciones de refuerzo A1-A2; repaso espaciado; escucha rápida; insignias y copia de seguridad.
 
 ## Privacidad
