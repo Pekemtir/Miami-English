@@ -1672,7 +1672,7 @@ const ALT_MAP={},NOTE_MAP={};
 const altOf=en=>ALT_MAP[wnorm(en).join(' ')]||[];
 const noteOf=en=>NOTE_MAP[wnorm(en).join(' ')]||'';
 /* ¿vale lo oído? la frase o cualquiera de sus variantes (≥75 % de palabras; ≤2 palabras: todas). main=true si coincide con la frase de la app */
-function speakOK(q,heard){let best=0,ok=false,main=false;[q.ans].concat(q.alt||altOf(q.ans)).forEach((v,i)=>{const n=cw(v).length,s=wscore(v,heard);if(s>best)best=s;if(s>=(n<=2?1:.75)){ok=true;if(i===0)main=true}});return{ok:ok,main:main,score:best}}
+function speakOK(q,heard){let best=-1,bi=0,ok=false;[q.ans].concat(q.alt||altOf(q.ans)).forEach((v,i)=>{const n=cw(v).length,s=wscore(v,heard);if(s>best){best=s;bi=i}if(s>=(n<=2?1:.75))ok=true});return{ok:ok,main:ok&&bi===0,score:Math.max(best,0)}}
 /* nota de registro: la específica de la frase o una regla general (could/can, please) */
 function speakNote(q,heard){const n=noteOf(q.ans);if(n)return n;const h=wnorm(heard),t=wnorm(q.ans);
   if(t.includes('could')&&(h.includes('can')||h.includes('want')))return'«Could» es más cortés que «Can»: al pedir algo a un desconocido suena mejor.';
