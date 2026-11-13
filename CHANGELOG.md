@@ -1,5 +1,12 @@
 # Miami English · cambios
 
+## v1.2 · 2026-11-13
+- Hablar: nueva práctica oral con micrófono (reconocimiento de voz del navegador, 75 % de las palabras) o autoevaluación si no hay reconocimiento; un paso «Habla» por módulo imprescindible en el plan.
+- Aviso para iPhone/Safari: instalar la web en la pantalla de inicio para no perder el progreso; petición de almacenamiento persistente.
+- El test de nivel y el final funcionan sin sonido (omiten la escucha y no valoran esa habilidad).
+- Temarios B1 y B2 renombrados «repaso» con su duración real (≈3 h y ≈4,5 h) y nota en Referencias.
+- Pruebas: ~13.000 comprobaciones automáticas y `tests/mc_test.js` (precisión del test de nivel con alumnos simulados: 73–83 % exacta, errores solo de un nivel).
+
 ## v1.1 · 2026-11-13
 - Curso B2: 22 lecciones (221 ejercicios): tiempos perfectos y de futuro avanzados, condicionales 3 y mixtos, deseos, deducción, pasiva y causativa, estilo indirecto, relativos, gerundio/infinitivo, inversión, conectores, phrasal verbs, colocaciones, idioms y registro, argumentar, comparar, reclamar y negociar, tags/so-such/artículos, adjetivos y adverbios, léxico de trabajo, ley, sociedad, tecnología, consumo y medios.
 - El test de nivel llega hasta B2 (20 preguntas nuevas), el plan incluye lecciones B2 si el nivel es B2 y el test final compara 4 niveles.

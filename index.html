@@ -1450,6 +1450,7 @@ function showQ(){const q=SE.qs[SE.i];if(!q)return endSession();const A=$('#app')
     A.innerHTML=h;setTimeout(()=>say(q.ca),150);return}
   if(q.k==='build'){h+='<div class="prompt">'+esc(q.es)+'</div><p class="muted">Ordena las palabras en inglés.</p><div class="line" id="ln"></div><div class="bank" id="bk">'+shuf(q.tok.concat(q.extra||[]).map((w,i)=>({w:w,i:i}))).map(o=>'<button class="wt" data-a="wt" data-v="'+o.i+'">'+esc(o.w)+'</button>').join('')+'</div><button class="btn block" id="ck" data-a="check" disabled>Comprobar</button>';
     SE.line=[];A.innerHTML=h+'<div class="spacer"></div>';return}
+  if(q.k==='speak'){h+=speakHtml(q);SE.listening=false;A.innerHTML=h+'<div class="spacer"></div>';return}
   const sayBtn=q.say?'<button class="spk" data-a="say" data-v="'+esc(q.say)+'" data-r="'+(q.rate||'')+'" aria-label="Escuchar">🔊</button><button class="spk" data-a="slow" data-v="'+esc(q.say)+'" aria-label="Escuchar despacio">🐢</button>':'';
   h+='<div class="prompt">'+(q.em?'<span class="big">'+q.em+'</span>':'')+(q.hide?'<span class="muted" style="font-size:22px">'+q.p+'</span>':q.p)+sayBtn+'</div>';
   if(q.k==='choice'){const ops=shuf([q.ans].concat(q.opts));h+='<div class="opts">'+ops.map(o=>'<button class="opt" data-a="pick" data-v="'+esc(o)+'">'+esc(o)+'</button>').join('')+'</div>'}
@@ -1461,7 +1462,7 @@ function sheet(ok,q,note,given){const old=$('#sheet');if(old)old.remove();const 
   let h;
   if(SE.o.test){h='<div class="in"><h3>Anotado</h3><button class="btn block" data-a="next" id="nx">Continúa</button></div>'}
   else{h='<div class="in"><h3>'+(ok?['¡Muy bien!','¡Perfecto!','¡Exacto!','¡Sí!'][rnd(4)]:'Casi…')+'</h3>';
-    if(!ok)h+='<p>Respuesta correcta: <b>'+esc(q.ans)+'</b>'+(q.sayAns||q.k==='build'?' '+spk(q.ans):'')+'</p>'+(given?'<small>Has escrito: '+esc(given)+'</small>':'');
+    if(!ok)h+='<p>Respuesta correcta: <b>'+esc(q.ans)+'</b>'+(q.sayAns||q.k==='build'||q.k==='speak'?' '+spk(q.ans):'')+'</p>'+(given?'<small>Has escrito: '+esc(given)+'</small>':'');
     if(note)h+='<p>'+esc(note)+'</p>';
     if(q.e)h+='<p>'+esc(q.e)+'</p>';
     h+='<button class="btn block" data-a="next" id="nx">Continúa</button></div>'}
@@ -1513,6 +1514,35 @@ function endSession(){const o=SE.o;const acc=SE.tot?SE.ok/SE.tot:0;let bonus=0;
   const pct=Math.round(acc*100);
   const miss=(res.miss&&res.miss.length&&!o.test)?'<div class="card" style="text-align:left;margin-top:14px"><b>🔁 Repasa tus fallos</b><ul>'+res.miss.slice(0,8).map(m=>'<li>'+esc(m.p)+' → <b>'+esc(m.a)+'</b></li>').join('')+'</ul></div>':'';
   $('#app').innerHTML='<div class="card" style="text-align:center;margin-top:20px"><div class="big">'+(pct>=90?'🏆':pct>=70?'🎉':pct>=50?'👍':'💪')+'</div><h1>'+(o.title||'Sesión terminada')+'</h1><p style="font-size:22px">'+SE.ok+' / '+SE.tot+' · '+pct+' %</p><p class="muted">+'+(SE.xp+bonus)+' XP'+(bonus?' (incluye bonus)':'')+' · mejor racha ×'+SE.max+'</p>'+(res.html||'')+'</div>'+miss+(o.extra?o.extra(res):'')+'<button class="btn block" data-a="done">Continúa</button>'+(Object.keys(S.weak).length&&!o.test?'<button class="btn sec block" style="margin-top:10px" data-a="weak">Repasa las frases débiles ('+Object.keys(S.weak).length+')</button>':'')}
+/* ===== HABLAR: reconocimiento de voz del navegador (si existe) o autoevaluación ===== */
+const SRC=()=>window.SpeechRecognition||window.webkitSpeechRecognition||null;
+const wnorm=t=>String(t).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(Boolean);
+function speakScore(target,heard){const t=wnorm(target),h=wnorm(heard).slice();if(!t.length)return 0;let hit=0;t.forEach(w=>{const i=h.indexOf(w);if(i>=0){hit++;h.splice(i,1)}});return hit/t.length}
+function speakQ(p){return{k:'speak',kind:'Habla',blk:'speak',key:'p:'+p.id,es:p.es,ans:p.en,e:p.en+' · '+p.es}}
+function speakQs(ps,n){const short=ps.filter(p=>p.en.split(' ').length<=8);return shuf(short.length>=n?short:ps).slice(0,n).map(speakQ)}
+function speakHtml(q){const sr=!!SRC();
+  return'<div class="prompt">'+esc(q.es)+'</div><p class="muted">Dilo en inglés, en voz alta.</p>'+
+  (sr?'<button class="btn block" id="mic" data-a="mic">🎤 Pulsa y habla</button><p class="muted" id="spkfb" style="min-height:24px;text-align:center"></p>':'<p class="muted">Tu navegador no reconoce voz: dilo tú, mira la frase y valórate.</p>')+
+  '<div id="rv"></div><div class="row" style="margin-top:10px"><button class="btn sec grow" data-a="showen">👀 Ver y escuchar la frase</button><button class="btn sec" data-a="sayno">Saltar</button></div>'}
+ACT.showen=()=>{if(SE.locked)return;const q=SE.cur;const r=$('#rv');if(!r)return;
+  r.innerHTML='<div class="card" style="text-align:center"><b>'+esc(q.ans)+'</b> '+spk(q.ans)+'</div><div class="row"><button class="btn grow" data-a="sayok">✅ Lo he dicho bien</button><button class="btn sec grow" data-a="sayno">🔁 No me sale</button></div>';say(q.ans)};
+ACT.sayok=()=>{if(SE.locked)return;finishQ(true,SE.cur)};
+ACT.sayno=()=>{if(SE.locked)return;finishQ(false,SE.cur)};
+ACT.mic=()=>{if(SE.locked||SE.listening)return;const SR=SRC();if(!SR){toast('Tu navegador no oye voz: usa «Ver la frase»');return}
+  const q=SE.cur;let r;try{r=new SR()}catch(e){toast('No se pudo abrir el micrófono');return}
+  r.lang='en-US';r.interimResults=false;r.maxAlternatives=3;SE.listening=true;let got=false;
+  const b=$('#mic');if(b)b.textContent='🎙️ Te escucho…';
+  const stop=()=>{SE.listening=false;const m=$('#mic');if(m)m.textContent='🎤 Pulsa y habla'};
+  r.onresult=e=>{got=true;stop();const alts=[];try{for(const a of e.results[0])alts.push(a.transcript)}catch(x){}
+    let best=alts[0]||'',bs=-1;alts.forEach(t=>{const s=speakScore(q.ans,t);if(s>bs){bs=s;best=t}});
+    if(SE.cur!==q||SE.locked)return;const need=wnorm(q.ans).length<=2?1:.75;
+    if(bs>=need){finishQ(true,q,'Te he entendido: «'+best+'».')}
+    else{const f=$('#spkfb');if(f)f.innerHTML='Te he oído: «'+esc(best)+'». Prueba otra vez o mira la frase.'}};
+  r.onerror=e=>{got=true;stop();toast(e&&(e.error==='not-allowed'||e.error==='service-not-allowed')?'Permite el micrófono en el navegador':'No te he oído, prueba otra vez')};
+  r.onend=()=>{stop();if(!got&&!SE.locked){const f=$('#spkfb');if(f)f.textContent='No te he oído. Pulsa y habla otra vez.'}};
+  try{r.start()}catch(e){stop()}};
+function startTalk(mod){const qs=speakQs(modPh(MOD[mod]),6);startSession(qs,{per:12,bonus:10,title:'Habla · '+MOD[mod].n,onDone:r=>{if(r.tot>=3){prog(mod).talk=1;save()}}})}
+ACT.speakp=()=>startSession(speakQs(allPh(),8),{per:12,bonus:15,title:'Hablar'});
 /* ===== PLAN PERSONALIZADO: reglas que ensamblan módulos según perfil, nivel, objetivo y tiempo ===== */
 const GOALS=[['tour','🏖️','Viaje de turismo'],['work','💼','Trabajo'],['study','🎓','Estudios'],['def','🙂','Solo defenderme']];
 const FEARS=[['air','🛬','Aeropuerto y migración'],['rest','🍽️','Restaurantes y propinas'],['trans','🚕','Taxi, Uber y direcciones'],['emer','🚑','Urgencias'],['shop','🛍️','Compras'],['hotel','🏨','Hotel'],['soc','🥂','Charlar con gente'],['money','💵','Dinero e impuestos'],['surv','🆘','No entender lo que me dicen']];
@@ -1528,6 +1558,7 @@ function itemDone(it){
   if(it.t==='prac')return prog(it.mod).prac>=70;
   if(it.t==='sim')return !!prog(it.mod).sims[it.sim];
   if(it.t==='drill')return prog(it.mod).drill>=70;
+  if(it.t==='talk')return !!prog(it.mod).talk;
   if(it.t==='gr'||it.t==='b1')return !!(S.les&&S.les[it.les]&&S.les[it.les].best>=70);
   if(it.t==='final')return !!S.fin;
   return false}
@@ -1536,7 +1567,7 @@ function buildPlan(){
   const days=P.days||5,mins=P.mins||15,weeks=weeksLeft();
   const budget=weeks*days*mins;const fears=P.fears||[];const goal=P.goal||'tour';
   const items=[];
-  const modItems=id=>{const a=[{t:'learn',mod:id,min:5},{t:'prac',mod:id,min:6}];
+  const modItems=id=>{const a=[{t:'learn',mod:id,min:5},{t:'prac',mod:id,min:6}];if(MOD[id].min)a.push({t:'talk',mod:id,min:4});
     simsOf(id).forEach(s=>a.push({t:'sim',mod:id,sim:s.id,min:5}));
     if(wk.oral&&MOD[id].min)a.push({t:'drill',mod:id,min:4});return a};
   const order=MINS.slice().sort((a,b)=>{if(a==='surv')return -1;if(b==='surv')return 1;const fa=fears.indexOf(a)>=0?0:1,fb=fears.indexOf(b)>=0?0:1;return fa-fb||MINS.indexOf(a)-MINS.indexOf(b)});
@@ -1564,6 +1595,7 @@ function itemLabel(it){
   if(it.t==='learn')return{ic:MOD[it.mod].ic,t:'Aprende · '+MOD[it.mod].n,s:'Frases, audio y consejos'};
   if(it.t==='prac')return{ic:'🎯',t:'Practica · '+MOD[it.mod].n,s:'Sesión de preguntas (aprobado 70 %)'};
   if(it.t==='sim'){const s=SIMS.find(x=>x.id===it.sim);return{ic:'🎬',t:'Simulación · '+s.t,s:MOD[it.mod].n}}
+  if(it.t==='talk')return{ic:'🎤',t:'Habla · '+MOD[it.mod].n,s:'Di las frases en voz alta · 4 min'};
   if(it.t==='drill')return{ic:'🎧',t:'Escucha rápida · '+MOD[it.mod].n,s:'Acento americano a velocidad real'};
   if(it.t==='gr'){const l=GRM[it.les];return{ic:l.ic,t:'Gramática · '+l.n,s:l.es}}
   if(it.t==='b1'){const l=B1M[it.les];return{ic:l.ic,t:(l.lvl||'B1')+' · '+l.n,s:l.es}}
@@ -1585,14 +1617,15 @@ function pickTB(k,lv){const free=i=>!TS.used.has(i)&&TB[i].k===k;let c=[];
   [lv,lv-1,lv+1,lv-2,lv+2].forEach(L=>{if(!c.length&&L>=1&&L<=4)c=TB.map((x,i)=>i).filter(i=>free(i)&&TB[i].lv===L)});
   if(!c.length)c=TB.map((x,i)=>i).filter(free);
   if(!c.length)return -1;return one(c)}
-function startLevelTest(){if(!S.set.voice){toast('🔇 Activa el sonido en Yo → Ajustes para hacer el test');return}TS={cur:2,used:new Set(),res:[],streak:0,n:0,mode:'level'};
-  const i=pickTB(TCYCLE[0],TS.cur);TS.used.add(i);
+const tk=n=>{const k=TCYCLE[n%TCYCLE.length];return(!S.set.voice&&k==='l')?['v','g','r'][n%3]:k};
+function startLevelTest(){TS={cur:2,used:new Set(),res:[],streak:0,n:0,mode:'level'};if(!S.set.voice)toast('🔇 Sin sonido: se omiten las preguntas de escucha');
+  const i=pickTB(tk(0),TS.cur);TS.used.add(i);
   startSession([tbQ(TB[i],i)],{test:true,total:30,per:0,title:'Test de nivel',more:testNext,custom:testResult,onAnswer:tsRec})}
 function tsRec(q,ok){const it=TB[q._tb];TS.res.push({k:it.k,lv:it.lv,ok:ok})}
 function testNext(q,ok){TS.n++;
   if(ok){TS.streak++;if(TS.streak>=2){TS.cur=Math.min(4,TS.cur+1);TS.streak=0}}else{TS.cur=Math.max(1,TS.cur-1);TS.streak=0}
   if(TS.n>=30)return null;
-  const i=pickTB(TCYCLE[TS.n%TCYCLE.length],TS.cur);if(i<0)return null;TS.used.add(i);return tbQ(TB[i],i)}
+  const i=pickTB(tk(TS.n),TS.cur);if(i<0)return null;TS.used.add(i);return tbQ(TB[i],i)}
 function estimate(res){const by={1:{ok:0,tot:0},2:{ok:0,tot:0},3:{ok:0,tot:0},4:{ok:0,tot:0}};res.forEach(r=>{by[r.lv].tot++;if(r.ok)by[r.lv].ok++});
   const a=L=>by[L].tot?by[L].ok/by[L].tot:0;let lv=1;
   if(by[2].tot>=2&&a(2)>=.6)lv=2;
@@ -1611,9 +1644,9 @@ function testResult(res){
   const prev=S.test||{lv:1,cat:{},score:0};S.fin={lv:e.lv,cat:e.cat,score:e.score,date:today()};save();checkBadges();
   const diff=e.score-prev.score;
   $('#app').innerHTML='<div class="card" style="text-align:center;margin-top:16px"><div class="big">🏁</div><h1>Test final</h1><p>Nivel inicial <b>'+LVN[prev.lv]+'</b> → ahora <b>'+LVN[e.lv]+'</b></p><p class="muted">Aciertos: '+prev.score+' % → '+e.score+' % ('+(diff>=0?'+':'')+diff+' puntos)</p></div><div class="card"><h3>Habilidades ahora</h3>'+catBars(e.cat)+'</div><button class="btn block" data-a="done">Continúa</button>'}
-function startFinalTest(){if(!S.set.voice){toast('🔇 Activa el sonido en Yo → Ajustes para hacer el test');return}const used=new Set((S.test&&S.test.used)||[]);
+function startFinalTest(){const used=new Set((S.test&&S.test.used)||[]);
   const want=[[1,4],[2,5],[3,6],[4,5]];const picks=[];
-  want.forEach(w=>{const pool=TB.map((x,i)=>i).filter(i=>TB[i].lv===w[0]&&!used.has(i));const pool2=TB.map((x,i)=>i).filter(i=>TB[i].lv===w[0]&&used.has(i));
+  want.forEach(w=>{const okk=i=>S.set.voice||TB[i].k!=='l';const pool=TB.map((x,i)=>i).filter(i=>TB[i].lv===w[0]&&okk(i)&&!used.has(i));const pool2=TB.map((x,i)=>i).filter(i=>TB[i].lv===w[0]&&okk(i)&&used.has(i));
     shuf(pool).concat(shuf(pool2)).slice(0,w[1]).forEach(i=>picks.push(i))});
   TS={cur:2,used:new Set(picks),res:[],streak:0,n:0,mode:'final'};
   const qs=shuf(picks).map(i=>tbQ(TB[i],i));
@@ -1695,9 +1728,12 @@ const row=(ic,t,s,act,v,st,extra)=>'<button class="lrow'+(st==='done'?' done':''
 function ring(p){const r=34,c=2*Math.PI*r;return'<svg class="ring" viewBox="0 0 80 80" role="img" aria-label="Progreso"><circle class="bg" cx="40" cy="40" r="'+r+'"/><circle class="fg" cx="40" cy="40" r="'+r+'" stroke-dasharray="'+c+'" stroke-dashoffset="'+(c*(1-Math.min(1,p/100)))+'" transform="rotate(-90 40 40)"/><text x="40" y="48" text-anchor="middle">'+p+'%</text></svg>'}
 function daysToTrip(){const d=S.prof&&S.prof.date;if(!d)return null;const n=Math.ceil((new Date(d+'T00:00:00')-new Date(today()+'T00:00:00'))/864e5);return n}
 /* ----- INICIO ----- */
+const IOSBR=()=>{try{return /iPhone|iPad|iPod/.test(navigator.userAgent||'')&&!navigator.standalone}catch(e){return false}};
+ACT.noinst=()=>{S.set.noinst=1;save();showCur()};
 V.home=()=>{
   if(!S.prof)return'<div class="hero" style="margin-top:14px"><div class="sun"></div><div><h1>Miami English</h1><p class="muted" style="margin:0">Inglés a medida para tu viaje a Miami</p></div></div><div class="card"><p>Responde unas preguntas, haz un test de nivel y la app te monta un <b>plan personalizado</b> con simulaciones de conversaciones reales: aeropuerto, restaurante, taxi, urgencias…</p><p class="muted">Gratis, sin cuentas. Todo se guarda solo en tu dispositivo.</p></div><button class="btn block" data-a="onb">🌴 Empezar</button><p class="muted" style="text-align:center;margin-top:18px">Proyecto independiente, sin afiliación con ninguna entidad oficial.</p>';
   let h='<h1>¡Hola, '+esc(S.prof.name)+'!</h1>';
+  if(IOSBR()&&!S.set.noinst)h+='<div class="card ch"><b>📲 Instálala para no perder tu progreso</b><p class="muted">En iPhone, Safari borra los datos de las webs que no abres en 7 días. Toca Compartir y «Añadir a pantalla de inicio»: así se queda guardado.</p><button class="btn sec sm" data-a="noinst">Ya está, no mostrar más</button></div>';
   const dt=daysToTrip();if(dt!=null&&dt>=0)h+='<p class="muted">Faltan <b>'+dt+'</b> días para tu viaje · Nivel '+LVN[LV()]+'</p>';else h+='<p class="muted">Nivel '+LVN[LV()]+'</p>';
   if(!S.test)h+='<div class="card ch"><b>Falta tu test de nivel</b><p class="muted">Dura unos 12 minutos y decide el plan.</p><button class="btn block" data-a="tintro">Hacer el test</button></div>';
   else if(!S.plan)h+='<div class="card ch"><b>Tu plan aún no está generado</b><button class="btn block" data-a="mkplan">Generar mi plan</button></div>';
@@ -1744,7 +1780,7 @@ ACT.onbsave=()=>{const O=ONB;O.name=(O.name||'').trim();if(!O.name){toast('Escri
   S.prof={name:O.name,goal:O.goal,fears:O.fears.slice(),weeks:weeks,date:O.date,mins:O.mins,days:O.days,self:O.self,lv0:lv0};S.plan=null;save();
   go('tintro',null,false)};
 /* ----- TEST: intro ----- */
-V.tintro=()=>'<h1>Test de nivel</h1><p class="muted">Paso 2 de 3</p><div class="card"><p>Son hasta <b>30 preguntas</b> (≈ 12 min) de vocabulario, gramática, lectura y comprensión oral. Se adapta a ti: si aciertas suben de dificultad y si fallas bajan.</p><p>Al final verás tu nivel (A1, A2, B1 o B2) y tus puntos débiles. <b>No te enseña las respuestas</b> durante el test.</p><p class="muted">Necesitas sonido para las preguntas de escucha.</p></div><button class="btn block" data-a="stest">🧪 Empezar el test</button><button class="btn sec block" style="margin-top:10px" data-a="skiptest">Saltar y usar mi nivel estimado ('+LVN[(S.prof&&S.prof.lv0)||1]+')</button>';
+V.tintro=()=>'<h1>Test de nivel</h1><p class="muted">Paso 2 de 3</p><div class="card"><p>Son hasta <b>30 preguntas</b> (≈ 12 min) de vocabulario, gramática, lectura y comprensión oral. Se adapta a ti: si aciertas suben de dificultad y si fallas bajan.</p><p>Al final verás tu nivel (A1, A2, B1 o B2) y tus puntos débiles. <b>No te enseña las respuestas</b> durante el test.</p><p class="muted">Con sonido incluye preguntas de escucha; sin sonido se omiten y no se valora esa habilidad.</p></div><button class="btn block" data-a="stest">🧪 Empezar el test</button><button class="btn sec block" style="margin-top:10px" data-a="skiptest">Saltar y usar mi nivel estimado ('+LVN[(S.prof&&S.prof.lv0)||1]+')</button>';
 ACT.tintro=()=>go('tintro',null,true);
 ACT.stest=()=>startLevelTest();ACT.rtest=()=>startLevelTest();
 ACT.skiptest=()=>{S.test={lv:(S.prof&&S.prof.lv0)||1,cat:{},score:0,date:today(),used:[],n:0,skipped:true};S.plan=null;save();ACT.mkplan()};
@@ -1772,6 +1808,7 @@ ACT.stepgo=i=>{const it=S.plan&&S.plan.items[+i];if(!it)return;
   if(it.t==='prac')return startPrac(it.mod);
   if(it.t==='sim')return go('sim',it.sim,true);
   if(it.t==='drill')return startDrill(it.mod);
+  if(it.t==='talk')return startTalk(it.mod);
   if(it.t==='gr'||it.t==='b1')return go('lesson',it.les,true);
   if(it.t==='final')return startFinalTest()};
 V.sim=simIntro;
@@ -1827,12 +1864,13 @@ ACT.daily=()=>{const first=!S.seen['dc'+today()];startSession(mixQs(allPh(),10).
 ACT.weak=()=>{const ks=shuf(Object.keys(S.weak)).slice(0,12);const qs=ks.map(keyToQ).filter(Boolean);if(!qs.length){toast('No tienes frases débiles');return}startSession(qs,{per:8,title:'Frases débiles'})};
 ACT.cult=()=>startSession(cultQs(8),{per:8,bonus:10,title:'Cultura práctica'});
 V.practice=()=>{let h='<h1>Práctica</h1>'+srsCard();
+  h+=row('🎤','Hablar','Di frases en voz alta (micrófono si tu navegador lo permite)','speakp');
   h+=row('🎧','Escucha rápida','Frases a velocidad real con acento americano','fastl');
   h+=row('⚡','Mix del día','10 preguntas de todo lo que llevas','daily');
   const nw=Object.keys(S.weak).length;h+=row('💪','Frases débiles',nw+' pendientes','weak');
   h+=row('🧭','Cultura práctica','Propinas, impuestos, 911… (8 preguntas)','cult');
   h+=row('🎬','Simulaciones','Conversaciones reales, '+SIMS.length+' escenas','go','sims');
-  h+=row('📘','Curso B1 completo','18 lecciones de gramática, léxico y funciones','go','b1list');h+=row('📗','Curso B2 completo','22 lecciones de nivel avanzado','go','b2list');
+  h+=row('📘','Temario B1 (repaso)','18 lecciones · unas 3 h de gramática, léxico y funciones','go','b1list');h+=row('📗','Temario B2 (repaso)','22 lecciones · unas 4,5 h de nivel avanzado','go','b2list');
   h+=row('🧱','Refuerzo A1-A2','6 mini-lecciones de gramática básica','go','grs');
   h+=row('🧪','Test de nivel','Repítelo cuando quieras','rtest');
   h+=row('🏁','Test final','Compara con tu nivel inicial'+(S.fin?' · último: '+S.fin.score+' %':''),'ftest');
@@ -1893,7 +1931,7 @@ V.refs=()=>{
   let h='<h1>📚 Temario y referencias</h1><div class="card"><p>El nivel <b>B1</b> de esta app (18 lecciones) se ha contrastado con el currículo básico del nivel Intermedio B1 del <b>Real Decreto 1041/2017</b> (escuelas oficiales de idiomas) y con las escalas B1 del <b>MCER</b>. Los módulos de viaje cubren los ámbitos léxicos de ese currículo que importan en Miami: viajes y vacaciones, alimentación y restauración, compras, salud, transporte, bienes y servicios, relaciones sociales y lengua y comunicación.</p></div>';
   h+='<h2>Cobertura del B1</h2><div class="tw"><table class="mini"><tr><th>Lección</th><th>Categoría del currículo</th></tr>'+COV.map(c=>'<tr><td>'+esc(B1M[c[0]].n)+'</td><td>'+esc(c[1])+'</td></tr>').join('')+'</table></div>';
   h+='<h2>Funciones del B1 que se practican</h2><div class="card"><p class="muted">Aconsejar y sugerir; pedir y ofrecer información, indicaciones y avisos; opinar, acordar y discrepar; formular hipótesis; expresar necesidad, deseo, intención, promesa, orden, permiso y prohibición; expresar decepción, disgusto, preocupación, esperanza, agradecimiento y disculpa; narrar, describir y relacionarse socialmente. Se trabajan en las lecciones B1 y en las simulaciones.</p></div>';
-  h+='<h2>Cobertura del B2</h2><div class="card"><p class="muted">El nivel <b>B2</b> (22 lecciones) se ha contrastado con el currículo básico del nivel Intermedio B2 del Real Decreto 1041/2017 (el B2 en las escuelas oficiales de idiomas), con las escalas B2 del MCER y con la secuenciación de contenidos gramaticales y léxicos de una programación de EOI de inglés B2.1/B2.2 del curso 2025-26.</p></div><div class="tw"><table class="mini"><tr><th>Lección</th><th>Categoría del currículo</th></tr>'+COV2.map(c=>'<tr><td>'+esc(B1M[c[0]].n)+'</td><td>'+esc(c[1])+'</td></tr>').join('')+'</table></div><div class="card"><p class="muted">Funciones del B2 que se practican: certeza, duda, conjetura y escepticismo; necesidad, deseo, decisión, orden, autorización y objeción; sugerencias, condiciones e hipótesis; opinión, valoración y consejo; narración de hechos pasados y predicciones; relaciones sociales.</p></div>'+'<h2>Lo que NO cubre</h2><div class="card"><p class="muted">No incluye producción escrita extensa, mediación formal, fonética guiada ni ensayo de examen oficial. No emite certificados ni sustituye un curso reglado. La programación concreta por cursos de una escuela oficial concreta no se ha replicado: solo se ha usado como referencia de contenidos.</p></div>';
+  h+='<h2>Cobertura del B2</h2><div class="card"><p class="muted">El nivel <b>B2</b> (22 lecciones) se ha contrastado con el currículo básico del nivel Intermedio B2 del Real Decreto 1041/2017 (el B2 en las escuelas oficiales de idiomas), con las escalas B2 del MCER y con la secuenciación de contenidos gramaticales y léxicos de una programación de EOI de inglés B2.1/B2.2 del curso 2025-26.</p></div><div class="tw"><table class="mini"><tr><th>Lección</th><th>Categoría del currículo</th></tr>'+COV2.map(c=>'<tr><td>'+esc(B1M[c[0]].n)+'</td><td>'+esc(c[1])+'</td></tr>').join('')+'</table></div><div class="card"><p class="muted">Funciones del B2 que se practican: certeza, duda, conjetura y escepticismo; necesidad, deseo, decisión, orden, autorización y objeción; sugerencias, condiciones e hipótesis; opinión, valoración y consejo; narración de hechos pasados y predicciones; relaciones sociales.</p></div>'+'<h2>Lo que NO cubre</h2><div class="card"><p class="muted">Los temarios B1 y B2 son un repaso: unos 10 ejercicios por lección (unas 3 h para el B1 y 4,5 h para el B2). Un curso de escuela oficial son más de 200 horas por nivel. No incluye producción escrita extensa, mediación formal, fonética guiada ni ensayo de examen oficial. No emite certificados ni sustituye un curso reglado. La programación concreta por cursos de una escuela oficial concreta no se ha replicado: solo se ha usado como referencia de contenidos.</p></div>';
   h+='<h2>Fuentes consultadas (solo para contrastar el temario, sin copiar textos)</h2><div class="card"><ul><li>Consejo de Europa · MCER, Volumen Complementario (2020): rm.coe.int/16809ea0d4</li><li>Real Decreto 1041/2017 (BOE-A-2017-15367), currículo básico del nivel Intermedio B1</li><li>Programación del Departamento de Inglés, EOI de Albacete, curso 2025-26 (competencias y funciones del B1). Consultada el 12-11-2026</li><li>Programación de inglés B2.1 y B2.2, EOI Navalmoral de la Mata (Extremadura), curso 2025-26: temas gramaticales y áreas léxicas. Consultada el 13-11-2026</li></ul></div>';
   h+='<h2>Información de viaje</h2><div class="card"><p class="muted">Los consejos sobre propinas, impuestos, número de emergencias o requisitos de entrada son orientativos y pueden cambiar. Comprueba siempre las webs oficiales (por ejemplo, para la autorización ESTA).</p></div>';
   h+='<h2>Licencias</h2><div class="card legal"><ul><li><b>Código</b>: MIT.</li><li><b>Contenidos del curso</b> (textos, ejercicios, simulaciones, frases): obra original, CC BY-NC 4.0.</li><li><b>Tipografías</b> Patrick Hand y Nunito (incrustadas): SIL Open Font License 1.1.</li><li>Proyecto independiente, <b>sin afiliación ni aval</b> de ninguna entidad oficial. No es un curso oficial ni emite certificados.</li><li>Privacidad: todo funciona en tu dispositivo. Sin cuentas, anuncios, cookies ni rastreo. El progreso se guarda en <code>localStorage</code>.</li></ul></div>';
@@ -1905,6 +1943,7 @@ document.addEventListener('change',e=>{const id=e.target.id;if(id==='ond'&&ONB){
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>go(t.dataset.v)));
 $('#back').addEventListener('click',up);$('#brand').addEventListener('click',()=>go('home'));
 applyTheme();show();
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 try{if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js')}catch(e){}
 })();
 </script>
