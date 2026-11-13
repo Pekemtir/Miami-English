@@ -1,7 +1,7 @@
 # Miami English · cambios
 
 ## v1.3 · 2026-11-13
-- Hablar: se aceptan variantes con el mismo significado (p. ej. «Wait a moment, please» para «One moment, please»): 72 frases con 3–10 variantes, contracciones y «911» como cifras, y sin penalizar «please», «a», «the».
+- Hablar: se aceptan variantes con el mismo significado (p. ej. «Wait a moment, please» para «One moment, please»): las 165 frases con 2–10 variantes, contracciones y «911» como cifras, y sin penalizar «please», «a», «the».
 - Cuando dices una variante válida, la app te dice que es correcta y explica por qué la suya es mejor (más cordial, más informal, más americana…).
 - El micrófono solo está abierto mientras grabas: se corta al oír la frase, al pasar de pregunta, a los 8 s, al minimizar la app o cambiar de pestaña, y se puede parar pulsando de nuevo.
 
