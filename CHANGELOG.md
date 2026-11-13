@@ -1,5 +1,10 @@
 # Miami English · cambios
 
+## v1.3.3 · 2026-11-13
+- Auditoría de las frases de voz (revisada con Opus): más variantes naturales (AC, «Here's», «hasn't arrived», «Just a minute», «Have a good one», drugstore/grocery store…) y variantes erróneas retiradas (embassy, robbery, bus station, «nine eleven», «to go please»…).
+- Notas de registro corregidas (nuts/peanuts, fitting/dressing rooms, split the bill, address, etc.).
+- Puntuación más precisa: números a cifras («for 2» = «for two»), A/C, wifi y más contracciones; ya no aceptan lo contrario (turn right por left, «I'm not lost», negaciones, números distintos, on/off…) y las variantes de ≤4 palabras exigen todas.
+
 ## v1.3.2 · 2026-11-13
 - Micrófono: al terminar se cierra con stop() y abort() (y otro abort a los 0,3 s) para que iOS libere la captura y apague el indicador.
 

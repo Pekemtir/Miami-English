@@ -1864,20 +1864,89 @@ Object.assign(NOTE_RAW,{
 'Is breakfast included?':'Corta y habitual en recepción. «Does the price include breakfast?» es más formal y pide confirmar en la reserva.',
 'Is there a resort fee?':'En Miami, el «resort fee» es un cargo diario obligatorio de muchos hoteles que no sale en el precio. Pregúntalo siempre antes de reservar.'
 });
+/* ---- ampliación 4: auditoría Opus (altas/bajas de variantes y notas corregidas) ---- */
+const _add=(k,a)=>{ALT_RAW[k]=(ALT_RAW[k]||[]).concat(a)};
+const _del=(k,a)=>{ALT_RAW[k]=(ALT_RAW[k]||[]).filter(x=>!a.includes(x))};
+_del("I'm allergic to nuts.",['I am allergic to peanuts']);
+_add("The air conditioning doesn't work.",['The AC is not working',"The AC isn't working",'The air conditioner does not work',"The air conditioning isn't working"]);
+_add('Could you turn on the air conditioning?',['Could you put on the AC','Can you put the air conditioner on','Could you turn on the air conditioner']);
+_del('Call nine one one, please.',['Call nine eleven']);
+_add('Here is my passport.',["Here's my passport",'Here is my passport please']);
+_add("My suitcase didn't arrive.",['My suitcase has not arrived',"My suitcase hasn't arrived",'My luggage has not arrived','My bag has not arrived']);
+_add("I didn't authorize this charge.",['I have not authorized this charge',"I haven't authorized this charge"]);
+_add('Could I have extra towels?',['Could you give me more towels','Can you give me more towels','Could you give me extra towels','Could I have more towels','Could you bring me more towels']);
+_add('Could we see the menu, please?',['Can you bring us the menu','Could you bring us the menu','Can I see the menu']);
+_add('Could we have the check, please?',['Could you bring us the check','Can you bring us the check','Could you bring us the bill','Can we get the check','Can I get the check']);
+_del('Could we have the check, please?',['The check please']);
+_del('Could I get this to go?',['To go please']);
+_add('Could I get this to go?',['Can I get it to go','Could I get it to go']);
+_add('Could I have a bag, please?',['Can you give me a bag','Could you give me a bag']);
+_add('Could I have a refill, please?',['Could you refill my glass','Can you refill my glass','Could you refill my drink']);
+_add('There seems to be a mistake on the check.',['There is a mistake in the bill','I think there is a mistake in the check','I think there is an error on the bill']);
+_add('Where is the nearest pharmacy?',['Where is the closest drugstore','Is there a drugstore near here']);
+_add('Where is the nearest supermarket?',['Where is the nearest grocery store','Where is the closest grocery store','Is there a grocery store near here']);
+_add('Where is the restroom?',["Where is the ladies' room","Where is the women's restroom",'Where can I find the bathroom']);
+_add('One moment, please.',['Just a minute','One minute','Just a sec','One sec']);
+_add('Have a nice day!',['Have a good one']);
+_add('Could you explain that in simpler words?',['Could you explain that in simpler terms','Can you explain it in simpler terms','Could you explain it in easier words','Could you explain that more simply']);
+_add('What time does boarding start?',['What time do we board','When do we board']);
+_add("I'd like to exchange this for a different color.",['I would like to change this for another color','Can I change this for a different color']);
+_add('I have a reservation.',["I've got a reservation"]);
+_add('Could you take a picture of us, please?',['Could you take our picture','Can you take our picture','Could you take a picture for us']);
+_add('Where are the fitting rooms?',['Where are the dressing rooms','Where is the dressing room']);
+_add('Go straight ahead.',['Keep straight','Continue straight ahead']);
+_add("How's it going?",['How are things','How is everything going']);
+_del('Where is the bus stop?',['Where is the bus station']);
+_del('I need to contact the Spanish consulate.',['I need to contact the Spanish embassy']);
+_del("I'd like to report a theft.",['I would like to report a robbery']);
+_del('Cheers!',['Good health']);
+_del('This is for you.',['I got this for you','Here this is for you']);
+_del("What's your name?",['What are you called']);
+_del('Is this on sale?',['Is this on discount']);
+_del("Can I return this if it doesn't fit?",['Can I exchange it if it does not fit']);
+Object.assign(NOTE_RAW,{
+"I'm allergic to nuts.":'«Nuts» son frutos secos de cáscara. En EE. UU. el cacahuete («peanut») va aparte: si eres alérgica a ambos, di «peanuts and tree nuts». Nunca «dry fruits» (= fruta desecada).',
+'Could you turn on the air conditioning?':'«Air conditioning» es la forma completa; «AC» (ei-sí) es igual de natural en EE. UU. «Could you» es más cortés que «Can you».',
+'Where are the fitting rooms?':'En EE. UU. se dice «fitting rooms» o «dressing rooms»; «changing rooms» es más británico.',
+'Where is gate B twelve?':'Las puertas se dicen letra + número: «B twelve», no «B one two». «B12» se entiende igual.',
+'Do you have a return ticket?':'En EE. UU. lo más habitual es «round-trip ticket»; «return ticket» es más británico, aunque el agente puede usarlo.',
+'Could you split the bill between us?':'En EE. UU. «split the bill» y «split the check» valen igual; «Could you» es lo cortés.',
+'Could you recommend something without gluten?':'«Without gluten» es correcto; en las cartas verás «gluten-free», igual de bueno.',
+'Could you take me to this address?':'«Address» es la dirección postal. No digas «direction» (= sentido o indicación). «Could you» es más cortés.',
+'Nice to meet you.':'Estándar y cordial. «Pleasure to meet you» es más formal. Ojo: «nice to know you» no se usa al conocer a alguien.',
+'Is this your first time in the United States?':'Pregunta típica y neutra del agente; «Is this your first visit…?» es un poco más formal.',
+'Sorry, could you repeat that?':'«Could you» es más cortés que «Can you». «Pardon?» es educado pero algo formal; «Sorry?» es lo más común.',
+'The reservation is under my name.':'«Under my name» es lo habitual en EE. UU.; «in my name» también se oye. No digas «at my name».',
+'Call nine one one, please.':'En EE. UU. se dice «nine one one» (cifra a cifra), nunca «nine eleven» (eso es el 11-S). Con «please» suena educado sin perder urgencia.'
+});
 /* ===== HABLAR: reconocimiento de voz del navegador (si existe) o autoevaluación ===== */
 const SRC=()=>window.SpeechRecognition||window.webkitSpeechRecognition||null;
 const wnorm=t=>String(t).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(Boolean);
-/* forma canónica: contracciones plegadas, cifras 911, sin muletillas (please, a, an, the) para no penalizar variantes */
-const FOLD=[[/\bdo not\b/g,'dont'],[/\bdoes not\b/g,'doesnt'],[/\bdid not\b/g,'didnt'],[/\bcannot\b/g,'cant'],[/\bcan not\b/g,'cant'],[/\bis not\b/g,'isnt'],[/\bare not\b/g,'arent'],[/\bi am\b/g,'im'],[/\byou are\b/g,'youre'],[/\bwe are\b/g,'were'],[/\bit is\b/g,'its'],[/\bwhat is\b/g,'whats'],[/\bwhere is\b/g,'wheres'],[/\bthat is\b/g,'thats'],[/\bi will\b/g,'ill'],[/\blet us\b/g,'lets'],[/\bcheck out\b/g,'checkout'],[/\bnine one one\b/g,'911'],[/\b9 1 1\b/g,'911'],[/\bnine eleven\b/g,'911']];
+/* forma canónica: números a cifras, contracciones plegadas, A/C, wifi, 911, sin muletillas (please, a, an, the) para no penalizar variantes */
+const NUMW={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90,first:1,second:2,third:3,fourth:4,fifth:5,sixth:6,seventh:7,eighth:8,ninth:9,tenth:10};
+function numtok(ws){const o=[];for(let i=0;i<ws.length;i++){let w=ws[i];const m=w.match(/^(\d+)(st|nd|rd|th)$/);if(m)w=m[1];
+  const sp=w.match(/^([a-z])(\d+)$/);if(sp){o.push(sp[1],sp[2]);continue}
+  if(w==='second'&&ws[i-1]&&/^(a|one|just|wait|hold|give|me|for)$/.test(ws[i-1]))o.push(w);
+  else if(NUMW[w]!==undefined){let v=NUMW[w];if(v>=20&&v%10===0&&ws[i+1]&&NUMW[ws[i+1]]>=1&&NUMW[ws[i+1]]<=9){v+=NUMW[ws[i+1]];i++}o.push(String(v))}else o.push(w)}return o}
+const FOLD=[[/\bdo not\b/g,'dont'],[/\bdoes not\b/g,'doesnt'],[/\bdid not\b/g,'didnt'],[/\bcannot\b/g,'cant'],[/\bcan not\b/g,'cant'],[/\bis not\b/g,'isnt'],[/\bare not\b/g,'arent'],[/\bwas not\b/g,'wasnt'],[/\bhas not\b/g,'hasnt'],[/\bhave not\b/g,'havent'],[/\bwill not\b/g,'wont'],[/\bwould not\b/g,'wouldnt'],[/\bcould not\b/g,'couldnt'],
+ [/\bi am\b/g,'im'],[/\byou are\b/g,'youre'],[/\bwe are\b/g,'were'],[/\bit is\b/g,'its'],[/\bwhat is\b/g,'whats'],[/\bwhere is\b/g,'wheres'],[/\bthat is\b/g,'thats'],[/\bhere is\b/g,'heres'],[/\bthere is\b/g,'theres'],[/\bhow is\b/g,'hows'],[/\bi will\b/g,'ill'],[/\bi have\b/g,'ive'],[/\bi would\b/g,'id'],[/\bwe would\b/g,'wed'],[/\blet us\b/g,'lets'],
+ [/\bcheck out\b/g,'checkout'],[/\bwi fi\b/g,'wifi'],[/\bstomach ache\b/g,'stomachache'],[/\b(?:a c|ac)\b/g,'air conditioning'],[/\bair condition(?:er|ing)?\b/g,'air conditioning'],[/\b9 1 1\b/g,'911']];
 const DROPW=new Set(['please','a','an','the']);
-function cw(t){let s=wnorm(t).join(' ');FOLD.forEach(f=>{s=s.replace(f[0],f[1])});return s.split(' ').filter(w=>w&&!DROPW.has(w))}
-function wscore(target,heard){const t=cw(target),h=cw(heard);if(!t.length)return 0;let hit=0;t.forEach(w=>{const i=h.indexOf(w);if(i>=0){hit++;h.splice(i,1)}});return hit/t.length}
+function cw(t){let s=numtok(wnorm(t)).join(' ');FOLD.forEach(f=>{s=s.replace(f[0],f[1])});return s.split(' ').filter(w=>w&&!DROPW.has(w))}
+const NEGW=new Set(['not','no','never','nothing','none','dont','doesnt','didnt','cant','isnt','arent','wasnt','hasnt','havent','wont','wouldnt','couldnt']);
+const OPP=[['left','right'],['on','off'],['more','less'],['smaller','bigger'],['slowly','quickly'],['spanish','english'],['window','aisle'],['buy','sell'],['arrive','leave'],['open','close'],['up','down'],['much','little'],['many','few'],['before','after'],['early','late']];
+/* guardas: misma polaridad (negación), mismos números y sin palabras opuestas */
+function guardOK(vw,hw){const vn=vw.some(w=>NEGW.has(w)),hn=hw.some(w=>NEGW.has(w));if(vn!==hn)return false;
+  const nums=a=>a.filter(w=>/^\d+$/.test(w)&&w!=='1').sort().join(',');if(nums(vw)!==nums(hw))return false;
+  for(const o of OPP){const va=vw.includes(o[0]),vb=vw.includes(o[1]),ha=hw.includes(o[0]),hb=hw.includes(o[1]);if((va&&!vb&&hb&&!ha)||(vb&&!va&&ha&&!hb))return false}return true}
+function wscore(target,heard){const t=cw(target),h=cw(heard);if(!t.length)return 0;if(!guardOK(t,h))return 0;const hh=h.slice();let hit=0;t.forEach(w=>{const i=hh.indexOf(w);if(i>=0){hit++;hh.splice(i,1)}});
+  if(t.length<=2&&h.length>t.length+3)return hit/t.length*.5;return hit/t.length}
 function speakScore(target,heard){return wscore(target,heard)}
 const ALT_MAP={},NOTE_MAP={};
 const altOf=en=>ALT_MAP[wnorm(en).join(' ')]||[];
 const noteOf=en=>NOTE_MAP[wnorm(en).join(' ')]||'';
 /* ¿vale lo oído? la frase o cualquiera de sus variantes (≥75 % de palabras; ≤2 palabras: todas). main=true si coincide con la frase de la app */
-function speakOK(q,heard){let best=-1,bi=0,ok=false;[q.ans].concat(q.alt||altOf(q.ans)).forEach((v,i)=>{const n=cw(v).length,s=wscore(v,heard);if(s>best){best=s;bi=i}if(s>=(n<=2?1:.75))ok=true});return{ok:ok,main:ok&&bi===0,score:Math.max(best,0)}}
+function speakOK(q,heard){let best=-1,bi=0,ok=false;[q.ans].concat(q.alt||altOf(q.ans)).forEach((v,i)=>{const n=cw(v).length,s=wscore(v,heard);if(s>best){best=s;bi=i}if(s>=(n<=4?1:.75))ok=true});return{ok:ok,main:ok&&bi===0,score:Math.max(best,0)}}
 /* nota de registro: la específica de la frase o una regla general (could/can, please) */
 function speakNote(q,heard){const n=noteOf(q.ans);if(n)return n;const h=wnorm(heard),t=wnorm(q.ans);
   if(t.includes('could')&&(h.includes('can')||h.includes('want')))return'«Could» es más cortés que «Can»: al pedir algo a un desconocido suena mejor.';
@@ -2319,7 +2388,7 @@ applyTheme();show();
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 try{if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js')}catch(e){}
 /* Actualización automática: al volver a la app comprueba si hay versión nueva y se recarga si no estás en mitad de una pregunta */
-const BUILD='1.3.2';let _chk=0;
+const BUILD='1.3.3';let _chk=0;
 function checkUpdate(){if(!/^https?:/.test(location.protocol)||Date.now()-_chk<20000)return;_chk=Date.now();
   fetch('index.html?'+_chk,{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);
     if(m&&m[1]!==BUILD&&!document.querySelector('.prompt,#sheet'))location.reload()}).catch(()=>{})}
