@@ -1514,35 +1514,203 @@ function endSession(){const o=SE.o;const acc=SE.tot?SE.ok/SE.tot:0;let bonus=0;
   const pct=Math.round(acc*100);
   const miss=(res.miss&&res.miss.length&&!o.test)?'<div class="card" style="text-align:left;margin-top:14px"><b>🔁 Repasa tus fallos</b><ul>'+res.miss.slice(0,8).map(m=>'<li>'+esc(m.p)+' → <b>'+esc(m.a)+'</b></li>').join('')+'</ul></div>':'';
   $('#app').innerHTML='<div class="card" style="text-align:center;margin-top:20px"><div class="big">'+(pct>=90?'🏆':pct>=70?'🎉':pct>=50?'👍':'💪')+'</div><h1>'+(o.title||'Sesión terminada')+'</h1><p style="font-size:22px">'+SE.ok+' / '+SE.tot+' · '+pct+' %</p><p class="muted">+'+(SE.xp+bonus)+' XP'+(bonus?' (incluye bonus)':'')+' · mejor racha ×'+SE.max+'</p>'+(res.html||'')+'</div>'+miss+(o.extra?o.extra(res):'')+'<button class="btn block" data-a="done">Continúa</button>'+(Object.keys(S.weak).length&&!o.test?'<button class="btn sec block" style="margin-top:10px" data-a="weak">Repasa las frases débiles ('+Object.keys(S.weak).length+')</button>':'')}
+/* ===== HABLAR: variantes válidas y notas de registro por frase (clave = frase inglesa) ===== */
+const ALT_RAW={
+'Excuse me.':['Pardon me','Sorry'],
+'Sorry, could you repeat that?':['Can you repeat that','Could you say that again','Pardon','Sorry can you say that again'],
+'Could you speak more slowly, please?':['Can you speak slower','Please speak slowly','Could you speak slower','Can you speak more slowly'],
+"I don't understand.":['I do not understand',"I don't get it"],
+"I don't speak much English.":['I do not speak English well','I speak a little English','My English is not good'],
+'Do you speak Spanish?':['Can you speak Spanish','Does anyone speak Spanish'],
+'Can you help me, please?':['Could you help me','Can you give me a hand','Could you help me please','I need help'],
+'Thank you very much.':['Thanks a lot','Thank you so much','Thanks so much','Many thanks','Thanks very much'],
+"You're welcome.":['No problem','My pleasure','Anytime','You are welcome'],
+'One moment, please.':['Wait a moment','Just a second','Hold on','Give me a second','Wait a minute','One second','Give me a moment','Wait a second','Hold on a second','Just a moment'],
+'Where is the restroom?':['Where is the bathroom','Where are the restrooms','Where is the toilet','Where can I find the restroom'],
+'Could you write it down, please?':['Can you write it down','Could you write that down','Can you write that down'],
+'Could you say that again, please?':['Can you say that again','Could you repeat that','Can you repeat that please'],
+'Where is baggage claim?':['Where is the baggage claim','Where can I get my luggage','Where do I pick up my bags','Where is the luggage claim'],
+'I have one bag to check.':['I have one suitcase to check','I want to check one bag','I would like to check one bag'],
+'Could we see the menu, please?':['Can we see the menu','Could I see the menu','Can I have the menu','Can we have the menu'],
+'Water, please.':['Can I have water','I would like water','Could I have some water','Can I have some water'],
+'What do you recommend?':['What would you recommend','What do you suggest','What is good here','What do you recommend here'],
+'Could we have the check, please?':['Can we have the bill','Could we have the bill please','Can I have the check','The check please','Can we have the check','Could we get the check','Could we have the bill'],
+'Can I pay by card?':['Can I pay with a card','Can I pay with card','Do you take cards','Can I use my card','Can I pay with my card'],
+'It was delicious.':['It was very good','It was great','It was so good','It was tasty','It was really good'],
+'Could I get this to go?':['Can I get this to go','Can I take this to go','To go please','Could I have this to go','Can I have this to go'],
+'Could I have a refill, please?':['Can I have a refill','Can I get a refill','Could I get a refill'],
+'How do I get to Ocean Drive?':['How can I get to Ocean Drive','How do I go to Ocean Drive','Can you tell me how to get to Ocean Drive'],
+'Could you take me to this address?':['Can you take me to this address','Please take me to this address'],
+'How much is it to the airport?':['How much to the airport','What is the fare to the airport','How much does it cost to the airport','How much is it to get to the airport'],
+'Please stop here.':['Stop here please','Can you stop here','You can stop here','Stop here'],
+'Keep the change.':['You can keep the change','Keep it'],
+'Is it far from here?':['Is it far','Is it far away','Is it a long way from here'],
+'Go straight ahead.':['Go straight','Keep going straight','Continue straight','Go straight on'],
+'Turn left at the corner.':['Take a left at the corner','Make a left at the corner'],
+'I need help!':['Help me','Please help','Help','I need some help'],
+'Call nine one one, please.':['Call 911','Call nine eleven','Please call 911','Call 9 1 1'],
+'I need a doctor.':['I need to see a doctor','Call a doctor'],
+'My wallet was stolen.':['Someone stole my wallet','I was robbed','My wallet got stolen','They stole my wallet'],
+'I lost my passport.':['I have lost my passport','I can not find my passport'],
+'It hurts here.':['It is painful here','I have pain here','This hurts','It hurts'],
+'Where is the nearest pharmacy?':['Where is the closest pharmacy','Is there a pharmacy near here','Where can I find a pharmacy','Where is the nearest drugstore'],
+'I need an ambulance.':['Call an ambulance','Please call an ambulance','Send an ambulance'],
+'How much is this?':['How much does this cost','How much is it','What is the price','What does this cost','How much does it cost'],
+'Can I try this on?':['Can I try it on','Could I try this on','May I try this on'],
+'Do you have this in a medium?':['Do you have a medium','Do you have this in medium','Do you have it in medium'],
+'Where are the fitting rooms?':['Where is the fitting room','Where can I try this on','Where are the changing rooms','Where is the changing room'],
+'Do you take credit cards?':['Do you accept credit cards','Can I pay by credit card','Do you take cards','Do you accept cards'],
+'Do you have a smaller size?':['Do you have a smaller one','Do you have this in a smaller size','Do you have something smaller'],
+'Is tax included in the price?':['Does the price include tax','Is tax included','Is the tax included','Is the tax included in the price'],
+'Could I have a bag, please?':['Can I have a bag','Can I get a bag','May I have a bag','Could I get a bag'],
+'Can I get a receipt?':['Can I have a receipt','Could I have a receipt','Receipt please','Could I get a receipt'],
+'Where is the nearest supermarket?':['Where is the closest supermarket','Is there a supermarket near here','Where can I find a supermarket'],
+'Is this on sale?':['Is this discounted','Is this on discount','Is it on sale'],
+'What is your return policy?':['What is the return policy','What are your return rules'],
+'What time is check-out?':['What time is checkout','When is check out','What time do I have to check out','What time is the checkout'],
+'Could I have extra towels?':['Can I have extra towels','Could I get more towels','Can I get some extra towels','Can I have more towels','Could I get extra towels'],
+'Where is the pool?':['Where is the swimming pool','Where can I find the pool'],
+'Is breakfast included?':['Does it include breakfast','Is breakfast included in the price','Does the price include breakfast'],
+'Could you call me a taxi, please?':['Can you call me a taxi','Could you call a taxi for me','Can you call a cab','Could you call me a cab'],
+'Is there a resort fee?':['Is there a resort charge','Do you charge a resort fee'],
+'Could I get a late check-out?':['Can I get a late checkout','Can I have a late check out','Could I check out late','Can I check out late','Could I have a late checkout'],
+'Could you recommend a good restaurant nearby?':['Can you recommend a good restaurant nearby','Can you recommend a good restaurant near here','Do you know a good restaurant nearby','Could you suggest a good restaurant nearby'],
+'Nice to meet you.':['Pleasure to meet you','Good to meet you','Nice meeting you','Nice to meet you too'],
+'Have a nice day!':['Have a good day','Have a great day','Have a nice one'],
+'I love Miami!':['I really love Miami','I like Miami','I love Miami so much'],
+'Is this seat taken?':['Is this seat free','Is anyone sitting here','Is this seat available','Is this chair taken','Is this seat empty'],
+'Could you take a picture of us, please?':['Can you take a picture of us','Could you take a photo of us','Can you take a photo of us please','Can you take a picture of us please'],
+'Do you want to grab a coffee?':['Do you want to get a coffee','Would you like to get a coffee','Want to grab a coffee','Shall we get a coffee','Would you like to grab a coffee'],
+'What do you do for a living?':['What is your job','What do you do','What is your profession','What do you do for work','What is your occupation'],
+'Do you take cash?':['Do you accept cash','Can I pay in cash','Can I pay with cash'],
+'Where is the nearest ATM?':['Where is the closest ATM','Is there an ATM near here','Where can I find an ATM','Where is the nearest cash machine'],
+'Can I pay with my phone?':['Can I pay by phone','Can I pay using my phone','Can I pay with my cell phone'],
+'Could you split the bill between us?':['Can you split the bill','Can we split the bill','Can we pay separately','Could you split the check between us','Can you split the check'],
+'Can we get separate checks?':['Can we have separate checks','Separate checks please','Can we pay separately','Can we have separate bills','Could we get separate checks'],
+'Is gratuity already added to the bill?':['Is the tip included','Is the tip already included','Is gratuity included','Is the tip already added to the bill']
+};
+/* Por qué la frase de la app es la mejor y cómo suenan las otras (se muestra cuando dices una variante válida) */
+const NOTE_RAW={
+'Excuse me.':'«Excuse me» es lo cordial para llamar la atención o pedir paso. «Sorry» se usa más cuando molestas o chocas sin querer.',
+'Sorry, could you repeat that?':'«Could you» es más cortés que «Can you». «Pardon?» suelto suena más formal/antiguo y seco.',
+'Could you speak more slowly, please?':'Con «could» y «please» suena amable. «Speak slower» sin más es más directo, casi una orden.',
+"I don't understand.":'«I don\'t understand» es claro y neutro. «I don\'t get it» es más informal, de amigos.',
+"I don't speak much English.":'La de la app es natural y sincera. «I speak a little English» suena más suave y positiva.',
+'Do you speak Spanish?':'Es la forma estándar y neutra. «Can you speak Spanish?» suena más a pedir un favor.',
+'Can you help me, please?':'«Could you» es algo más cortés que «Can you». «Give me a hand» es informal, entre colegas.',
+'Thank you very much.':'«Thank you very much» es educado y cordial. «Thanks a lot» es más informal; «Many thanks» es más formal, de escrito.',
+"You're welcome.":'«You\'re welcome» es el estándar educado. «No problem» es más informal; «My pleasure» es más cordial, típico de camareros y recepción.',
+'One moment, please.':'«One moment, please» es lo que dice el personal con trato profesional y cordial. «Wait a moment» sin «please» suena a orden; «Hold on» y «Just a sec» son informales, para amigos.',
+'Where is the restroom?':'«Restroom» es lo educado y habitual en EE. UU. «Bathroom» también vale y es algo más casual; «toilet» suena británico y menos fino allí.',
+'Could you write it down, please?':'«Could you» es más cortés que «Can you»; con «please» queda amable.',
+'Could you say that again, please?':'Con «could» y «please» suena cortés. «Can you repeat that?» es correcto pero algo más directo.',
+'Where is baggage claim?':'«Baggage claim» es el nombre del cartel del aeropuerto, así te entienden al instante. Las otras se entienden pero son más largas.',
+'I have one bag to check.':'«To check» es el verbo exacto de facturar. Las demás se entienden, pero esta es la que usa el personal.',
+'Could we see the menu, please?':'«Could we» es más cortés que «Can we». Pedir la carta con «please» es lo normal en un restaurante.',
+'Water, please.':'Corta y totalmente normal al pedir. «Could I have some water?» es más cordial; «I want water» sonaría brusco.',
+'What do you recommend?':'«What do you recommend?» es directa y educada. «What would you recommend?» es un poco más cortés; «What\'s good here?» es informal.',
+'Could we have the check, please?':'En EE. UU. la cuenta es «the check». «The bill» también se entiende, pero es más británico. «Could we» es más cortés que «Can we».',
+'Can I pay by card?':'Todas valen. «Can I pay by card?» es la más corta y natural; «Do you take cards?» suena más a pregunta general al local.',
+'It was delicious.':'«Delicious» es un elogio más fuerte y cordial; «It was good» es correcto pero más flojo y neutro.',
+'Could I get this to go?':'«To go» es lo americano (en Reino Unido dirían «takeaway»). «Could I» es más cortés que «Can I».',
+'Could I have a refill, please?':'«Could I» es más cortés que «Can I». Entre amigos o en un bar informal «Can I get a refill?» también vale.',
+'How do I get to Ocean Drive?':'Es la forma más usada para preguntar cómo llegar. «Can you tell me how to get…?» es más cortés pero más larga.',
+'Could you take me to this address?':'«Could you» es más cortés que «Can you»; al taxista, mejor educado y con la dirección a la vista.',
+'How much is it to the airport?':'Es la pregunta típica al taxista antes de subir. «How much to the airport?» es más rápida, algo más informal.',
+'Please stop here.':'«Please stop here» es cortés y claro. «Stop here» a secas suena a orden; «You can stop here» es más suave, muy habitual.',
+'Keep the change.':'La corta es lo normal y se entiende al instante. «You can keep the change» es un poco más cordial.',
+'Is it far from here?':'«Is it far from here?» es la forma completa y natural; «Is it far?» sirve cuando ya se sabe de qué lugar se habla.',
+'Go straight ahead.':'«Go straight ahead» es la indicación clásica. «Go straight» o «keep going straight» valen igual; «go straight on» suena más británico.',
+'Turn left at the corner.':'«Turn left» es lo estándar y claro; «take a left» es muy americano y algo más informal.',
+'I need help!':'En una emergencia, corta y directa es lo mejor. «Help me!» también se entiende; «Please help» es más cortés pero más lenta.',
+'Call nine one one, please.':'En EE. UU. se dice «nine one one» (cifra a cifra), nunca «nine eleven». Con «please» suena educado sin perder urgencia.',
+'I need a doctor.':'La de la app es directa y vale en una urgencia. «I need to see a doctor» suena más a cita; «Call a doctor» es una orden.',
+'My wallet was stolen.':'«My wallet was stolen» es neutra y la que entiende la policía. «I was robbed» implica que te amenazaron o agredieron, es más grave.',
+'I lost my passport.':'Natural y neutra para un parte. «I have lost…» es correcta pero más británica o formal.',
+'It hurts here.':'Es la forma más natural para señalar un dolor. «I have pain here» suena más médico y formal.',
+'Where is the nearest pharmacy?':'En EE. UU. dicen «pharmacy» o «drugstore»; «nearest» y «closest» valen igual. «Is there a pharmacy near here?» es más cortés.',
+'I need an ambulance.':'Frase de emergencia clara. «Call an ambulance» es una orden, útil si hablas con alguien cerca; «I need an ambulance» es lo que dices al 911.',
+'How much is this?':'Es la forma más corta y habitual en tiendas. «How much does it cost?» es igual de correcta, un poco más formal.',
+'Can I try this on?':'«Can I» es perfecto en tiendas. «May I» es más formal y poco usado ahí.',
+'Do you have this in a medium?':'La de la app es la forma habitual. «Do you have a medium?» suena algo más brusca.',
+'Where are the fitting rooms?':'«Fitting rooms» es lo que pone en los carteles americanos; «changing rooms» es más británico.',
+'Do you take credit cards?':'«Take» es lo coloquial y común; «accept» es algo más formal, típico de carteles.',
+'Do you have a smaller size?':'Natural y cortés. «Do you have something smaller?» es más informal.',
+'Is tax included in the price?':'Importante en EE. UU.: el precio de etiqueta casi nunca incluye el tax, así que conviene preguntarlo así de claro.',
+'Could I have a bag, please?':'«Could I» es más cortés que «Can I»; «May I» es más formal.',
+'Can I get a receipt?':'«Can I get» es muy natural allí. «Receipt, please» es corta y vale al pagar, aunque más seca.',
+'Is this on sale?':'«On sale» es «de oferta». «Discounted» se entiende pero es más formal.',
+'What time is check-out?':'«Check-out» se usa como sustantivo («the check-out time»). Todas valen; «checkout» sin guion es igual de común.',
+'Could I have extra towels?':'«Could I» es más cortés que «Can I». «More towels» también vale, pero «extra» indica que ya tienes algunas.',
+'Could you call me a taxi, please?':'«Cab» y «taxi» valen igual; «Could you» es más cortés que «Can you».',
+'Could I get a late check-out?':'Pedirlo con «Could I» es lo cordial en recepción; «Can I» es correcto pero más directo.',
+'Could you recommend a good restaurant nearby?':'«Could you recommend…?» es cortés y natural. «Do you know a good…?» es más informal y conversacional.',
+'Nice to meet you.':'Estándar y cordial. «Pleasure to meet you» es más formal; «Good to meet you» es más informal y amistoso.',
+'Have a nice day!':'La más habitual al despedirte de cajeros o recepción. «Have a good day» es igual; «Have a nice one» es más informal.',
+'I love Miami!':'Directa y natural. «I like Miami» es más flojo, suena menos entusiasta.',
+'Is this seat taken?':'La frase estándar y educada. «Is anyone sitting here?» es más informal.',
+'Could you take a picture of us, please?':'«Picture» y «photo» valen; «Could you … please» es la forma más cortés para pedirle algo a un desconocido.',
+'Do you want to grab a coffee?':'«Grab a coffee» es informal y relajado, perfecto entre colegas. «Would you like to get a coffee?» es más educado, para alguien que apenas conoces.',
+'What do you do for a living?':'Es la pregunta típica de conversación, algo más neutra que «What do you do?». «What\'s your job?» suena más directa.',
+'Do you take cash?':'«Take» es lo coloquial; «accept» es más formal.',
+'Where is the nearest ATM?':'«ATM» es lo habitual allí (no «cash machine», que es más británico).',
+'Can I pay with my phone?':'«With» es lo más natural; «by phone» suena a pagar por teléfono (llamando).',
+'Could you split the bill between us?':'En EE. UU. se dice «split the check»; «bill» se entiende pero es más británico.',
+'Can we get separate checks?':'Es lo que se dice en restaurantes americanos. «Separate checks, please» es breve pero más seca.',
+'Is gratuity already added to the bill?':'«Gratuity» es el término formal de la propina en la cuenta; «tip» es lo coloquial y también se entiende.'
+};
 /* ===== HABLAR: reconocimiento de voz del navegador (si existe) o autoevaluación ===== */
 const SRC=()=>window.SpeechRecognition||window.webkitSpeechRecognition||null;
 const wnorm=t=>String(t).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(Boolean);
-function speakScore(target,heard){const t=wnorm(target),h=wnorm(heard).slice();if(!t.length)return 0;let hit=0;t.forEach(w=>{const i=h.indexOf(w);if(i>=0){hit++;h.splice(i,1)}});return hit/t.length}
-function speakQ(p){return{k:'speak',kind:'Habla',blk:'speak',key:'p:'+p.id,es:p.es,ans:p.en,e:p.en+' · '+p.es}}
+/* forma canónica: contracciones plegadas, cifras 911, sin muletillas (please, a, an, the) para no penalizar variantes */
+const FOLD=[[/\bdo not\b/g,'dont'],[/\bdoes not\b/g,'doesnt'],[/\bdid not\b/g,'didnt'],[/\bcannot\b/g,'cant'],[/\bcan not\b/g,'cant'],[/\bis not\b/g,'isnt'],[/\bare not\b/g,'arent'],[/\bi am\b/g,'im'],[/\byou are\b/g,'youre'],[/\bwe are\b/g,'were'],[/\bit is\b/g,'its'],[/\bwhat is\b/g,'whats'],[/\bwhere is\b/g,'wheres'],[/\bthat is\b/g,'thats'],[/\bi will\b/g,'ill'],[/\blet us\b/g,'lets'],[/\bcheck out\b/g,'checkout'],[/\bnine one one\b/g,'911'],[/\b9 1 1\b/g,'911'],[/\bnine eleven\b/g,'911']];
+const DROPW=new Set(['please','a','an','the']);
+function cw(t){let s=wnorm(t).join(' ');FOLD.forEach(f=>{s=s.replace(f[0],f[1])});return s.split(' ').filter(w=>w&&!DROPW.has(w))}
+function wscore(target,heard){const t=cw(target),h=cw(heard);if(!t.length)return 0;let hit=0;t.forEach(w=>{const i=h.indexOf(w);if(i>=0){hit++;h.splice(i,1)}});return hit/t.length}
+function speakScore(target,heard){return wscore(target,heard)}
+const ALT_MAP={},NOTE_MAP={};
+const altOf=en=>ALT_MAP[wnorm(en).join(' ')]||[];
+const noteOf=en=>NOTE_MAP[wnorm(en).join(' ')]||'';
+/* ¿vale lo oído? la frase o cualquiera de sus variantes (≥75 % de palabras; ≤2 palabras: todas). main=true si coincide con la frase de la app */
+function speakOK(q,heard){let best=0,ok=false,main=false;[q.ans].concat(q.alt||altOf(q.ans)).forEach((v,i)=>{const n=cw(v).length,s=wscore(v,heard);if(s>best)best=s;if(s>=(n<=2?1:.75)){ok=true;if(i===0)main=true}});return{ok:ok,main:main,score:best}}
+/* nota de registro: la específica de la frase o una regla general (could/can, please) */
+function speakNote(q,heard){const n=noteOf(q.ans);if(n)return n;const h=wnorm(heard),t=wnorm(q.ans);
+  if(t.includes('could')&&(h.includes('can')||h.includes('want')))return'«Could» es más cortés que «Can»: al pedir algo a un desconocido suena mejor.';
+  if(t.includes('please')&&!h.includes('please'))return'Con «please» suena más amable.';return'Tu versión también se entiende bien.'}
+function speakQ(p){return{k:'speak',kind:'Habla',blk:'speak',key:'p:'+p.id,es:p.es,ans:p.en,alt:altOf(p.en),e:p.en+' · '+p.es}}
 function speakQs(ps,n){const short=ps.filter(p=>p.en.split(' ').length<=8);return shuf(short.length>=n?short:ps).slice(0,n).map(speakQ)}
 function speakHtml(q){const sr=!!SRC();
   return'<div class="prompt">'+esc(q.es)+'</div><p class="muted">Dilo en inglés, en voz alta.</p>'+
   (sr?'<button class="btn block" id="mic" data-a="mic">🎤 Pulsa y habla</button><p class="muted" id="spkfb" style="min-height:24px;text-align:center"></p>':'<p class="muted">Tu navegador no reconoce voz: dilo tú, mira la frase y valórate.</p>')+
   '<div id="rv"></div><div class="row" style="margin-top:10px"><button class="btn sec grow" data-a="showen">👀 Ver y escuchar la frase</button><button class="btn sec" data-a="sayno">Saltar</button></div>'}
-ACT.showen=()=>{if(SE.locked)return;const q=SE.cur;const r=$('#rv');if(!r)return;
+ACT.showen=()=>{if(SE.locked)return;micOff();const q=SE.cur;const r=$('#rv');if(!r)return;
   r.innerHTML='<div class="card" style="text-align:center"><b>'+esc(q.ans)+'</b> '+spk(q.ans)+'</div><div class="row"><button class="btn grow" data-a="sayok">✅ Lo he dicho bien</button><button class="btn sec grow" data-a="sayno">🔁 No me sale</button></div>';say(q.ans)};
-ACT.sayok=()=>{if(SE.locked)return;finishQ(true,SE.cur)};
-ACT.sayno=()=>{if(SE.locked)return;finishQ(false,SE.cur)};
-ACT.mic=()=>{if(SE.locked||SE.listening)return;const SR=SRC();if(!SR){toast('Tu navegador no oye voz: usa «Ver la frase»');return}
+ACT.sayok=()=>{if(SE.locked)return;micOff();finishQ(true,SE.cur)};
+ACT.sayno=()=>{if(SE.locked)return;micOff();finishQ(false,SE.cur)};
+/* El micro solo está abierto mientras se graba la frase: se corta al oír, al pasar de pregunta, tras 8 s, al minimizar o cambiar de pestaña */
+let REC=null,RECT=0;
+function micOff(){clearTimeout(RECT);const r=REC;REC=null;if(SE)SE.listening=false;if(r){r.onresult=r.onerror=r.onend=null;try{r.abort()}catch(e){try{r.stop()}catch(x){}}}const m=$('#mic');if(m)m.textContent='🎤 Pulsa y habla'}
+if(document.addEventListener)document.addEventListener('visibilitychange',()=>{if(document.hidden)micOff()});
+if(window.addEventListener)window.addEventListener('pagehide',micOff);
+const _quit=ACT.quit;if(_quit)ACT.quit=function(){micOff();return _quit.apply(this,arguments)};
+ACT.mic=()=>{if(SE.locked)return;if(SE.listening){micOff();return}const SR=SRC();if(!SR){toast('Tu navegador no oye voz: usa «Ver la frase»');return}
   const q=SE.cur;let r;try{r=new SR()}catch(e){toast('No se pudo abrir el micrófono');return}
-  r.lang='en-US';r.interimResults=false;r.maxAlternatives=3;SE.listening=true;let got=false;
-  const b=$('#mic');if(b)b.textContent='🎙️ Te escucho…';
-  const stop=()=>{SE.listening=false;const m=$('#mic');if(m)m.textContent='🎤 Pulsa y habla'};
-  r.onresult=e=>{got=true;stop();const alts=[];try{for(const a of e.results[0])alts.push(a.transcript)}catch(x){}
-    let best=alts[0]||'',bs=-1;alts.forEach(t=>{const s=speakScore(q.ans,t);if(s>bs){bs=s;best=t}});
-    if(SE.cur!==q||SE.locked)return;const need=wnorm(q.ans).length<=2?1:.75;
-    if(bs>=need){finishQ(true,q,'Te he entendido: «'+best+'».')}
+  r.lang='en-US';r.interimResults=false;r.continuous=false;r.maxAlternatives=3;SE.listening=true;REC=r;let got=false;
+  const b=$('#mic');if(b)b.textContent='🎙️ Te escucho… (pulsa para parar)';
+  RECT=setTimeout(()=>{if(REC===r){const f=$('#spkfb');micOff();if(f&&!got)f.textContent='No te he oído. Pulsa y habla otra vez.'}},8000);
+  r.onresult=e=>{got=true;const alts=[];try{for(const a of e.results[0])alts.push(a.transcript)}catch(x){}micOff();
+    let best=alts[0]||'',ok=false,main=false,bs=-1;
+    alts.forEach(t=>{const o=speakOK(q,t);if(o.ok&&(!ok||(o.main&&!main))){ok=true;main=o.main;best=t}else if(!ok&&o.score>bs){bs=o.score;best=t}});
+    if(SE.cur!==q||SE.locked)return;
+    if(ok){let m='Te he entendido: «'+best+'».';if(!main)m+=' Vale, es correcto. Pero la frase de la app es mejor: «'+q.ans+'». '+speakNote(q,best);finishQ(true,q,m)}
     else{const f=$('#spkfb');if(f)f.innerHTML='Te he oído: «'+esc(best)+'». Prueba otra vez o mira la frase.'}};
-  r.onerror=e=>{got=true;stop();toast(e&&(e.error==='not-allowed'||e.error==='service-not-allowed')?'Permite el micrófono en el navegador':'No te he oído, prueba otra vez')};
-  r.onend=()=>{stop();if(!got&&!SE.locked){const f=$('#spkfb');if(f)f.textContent='No te he oído. Pulsa y habla otra vez.'}};
-  try{r.start()}catch(e){stop()}};
+  r.onerror=e=>{got=true;micOff();toast(e&&(e.error==='not-allowed'||e.error==='service-not-allowed')?'Permite el micrófono en el navegador':'No te he oído, prueba otra vez')};
+  r.onend=()=>{if(REC===r)micOff();if(!got&&!SE.locked){const f=$('#spkfb');if(f)f.textContent='No te he oído. Pulsa y habla otra vez.'}};
+  try{r.start()}catch(e){micOff()}};
 function startTalk(mod){const qs=speakQs(modPh(MOD[mod]),6);startSession(qs,{per:12,bonus:10,title:'Habla · '+MOD[mod].n,onDone:r=>{if(r.tot>=3){prog(mod).talk=1;save()}}})}
 ACT.speakp=()=>startSession(speakQs(allPh(),8),{per:12,bonus:15,title:'Hablar'});
+
+Object.keys(ALT_RAW).forEach(k=>{ALT_MAP[wnorm(k).join(' ')]=ALT_RAW[k]});Object.keys(NOTE_RAW).forEach(k=>{NOTE_MAP[wnorm(k).join(' ')]=NOTE_RAW[k]});
 /* ===== PLAN PERSONALIZADO: reglas que ensamblan módulos según perfil, nivel, objetivo y tiempo ===== */
 const GOALS=[['tour','🏖️','Viaje de turismo'],['work','💼','Trabajo'],['study','🎓','Estudios'],['def','🙂','Solo defenderme']];
 const FEARS=[['air','🛬','Aeropuerto y migración'],['rest','🍽️','Restaurantes y propinas'],['trans','🚕','Taxi, Uber y direcciones'],['emer','🚑','Urgencias'],['shop','🛍️','Compras'],['hotel','🏨','Hotel'],['soc','🥂','Charlar con gente'],['money','💵','Dinero e impuestos'],['surv','🆘','No entender lo que me dicen']];
