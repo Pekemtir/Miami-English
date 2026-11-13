@@ -1894,7 +1894,7 @@ ACT.sayok=()=>{if(SE.locked)return;micOff();finishQ(true,SE.cur)};
 ACT.sayno=()=>{if(SE.locked)return;micOff();finishQ(false,SE.cur)};
 /* El micro solo está abierto mientras se graba la frase: se corta al oír, al pasar de pregunta, tras 8 s, al minimizar o cambiar de pestaña */
 let REC=null,RECT=0;
-function micOff(){clearTimeout(RECT);const r=REC;REC=null;if(SE)SE.listening=false;if(r){r.onresult=r.onerror=r.onend=null;try{r.abort()}catch(e){try{r.stop()}catch(x){}}}const m=$('#mic');if(m)m.textContent='🎤 Pulsa y habla'}
+function micOff(){clearTimeout(RECT);const r=REC;REC=null;if(SE)SE.listening=false;if(r){r.onresult=r.onerror=r.onend=null;try{r.stop()}catch(e){}try{r.abort()}catch(e){}setTimeout(()=>{try{r.abort()}catch(e){}},300)}const m=$('#mic');if(m)m.textContent='🎤 Pulsa y habla'}
 if(document.addEventListener)document.addEventListener('visibilitychange',()=>{if(document.hidden)micOff()});
 if(window.addEventListener)window.addEventListener('pagehide',micOff);
 const _quit=ACT.quit;if(_quit)ACT.quit=function(){micOff();return _quit.apply(this,arguments)};
@@ -2319,7 +2319,7 @@ applyTheme();show();
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 try{if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js')}catch(e){}
 /* Actualización automática: al volver a la app comprueba si hay versión nueva y se recarga si no estás en mitad de una pregunta */
-const BUILD='1.3.1';let _chk=0;
+const BUILD='1.3.2';let _chk=0;
 function checkUpdate(){if(!/^https?:/.test(location.protocol)||Date.now()-_chk<20000)return;_chk=Date.now();
   fetch('index.html?'+_chk,{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);
     if(m&&m[1]!==BUILD&&!document.querySelector('.prompt,#sheet'))location.reload()}).catch(()=>{})}

@@ -1,5 +1,8 @@
 # Miami English · cambios
 
+## v1.3.2 · 2026-11-13
+- Micrófono: al terminar se cierra con stop() y abort() (y otro abort a los 0,3 s) para que iOS libere la captura y apague el indicador.
+
 ## v1.3.1 · 2026-11-13
 - Actualización automática: al volver a la app comprueba si hay versión nueva y se recarga sola (si no estás en mitad de una pregunta).
 
