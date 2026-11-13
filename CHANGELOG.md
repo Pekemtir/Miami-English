@@ -1,5 +1,8 @@
 # Miami English · cambios
 
+## v1.3.1 · 2026-11-13
+- Actualización automática: al volver a la app comprueba si hay versión nueva y se recarga sola (si no estás en mitad de una pregunta).
+
 ## v1.3 · 2026-11-13
 - Hablar: se aceptan variantes con el mismo significado (p. ej. «Wait a moment, please» para «One moment, please»): las 165 frases con 2–10 variantes, contracciones y «911» como cifras, y sin penalizar «please», «a», «the».
 - Cuando dices una variante válida, la app te dice que es correcta y explica por qué la suya es mejor (más cordial, más informal, más americana…).
